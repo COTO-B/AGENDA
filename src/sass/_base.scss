@@ -17,6 +17,12 @@
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
 
   --line: 1px solid var(--color-grey-light-2);
+
+  --background-color: linear-gradient(
+    to right bottom,
+    var(--color-grey-light-1),
+    var(--color-grey-dark-2)
+  );
 }
 
 /*BREAK POINTS*/
@@ -42,11 +48,32 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; //62,5% = 1REM = 10px . 10/16=62,5
 
-  @media only screen and (max-width: $bp-largest) {
-    font-size: 50%; // 8px
-  }
+  // @media only screen and (max-width: $bp-largest) {
+  //   font-size: 50%; // 8px
+  // }
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-grey-dark-1);
+  background-image: var(--background-color);
+  background-size: cover;
+  background-repeat: no-repeat;
+  // min-height: 100vh;
 }
 
 h1 {
   background-color: red;
+}
+
+.container {
+  max-width: 120rem;
+  min-height: calc(100vh - 8vw);
+  margin: 4vw auto;
+  background-color: #fff;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 2rem 6rem 0.5rem rgba(var(--color-grey-dark-1), 0.2);
 }
