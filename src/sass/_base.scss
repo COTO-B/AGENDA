@@ -78,8 +78,8 @@ h1 {
   box-shadow: 0 2rem 6rem 0.5rem rgba(var(--color-grey-dark-1), 0.2);
 
   display: grid;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: 10rem minmax(100rem auto);
-  grid-template-columns: 1fr 2fr;
   grid-template-areas:
     "head project"
     "list project";
@@ -91,8 +91,10 @@ header {
 
 .project-list {
   grid-area: list;
+  background-color: var(--color-grey-dark-3);
 }
 
-.preview {
+.project-view {
   grid-area: project;
+  background-color: var(--color-primary);
 }
