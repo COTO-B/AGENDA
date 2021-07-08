@@ -1,7 +1,7 @@
 /*VARIABLES*/
 :root {
   --color-primary-1: #edfafc;
-  --color-primary-2: #70a9ff;
+  --color-primary-2: #70cfff;
   --color-primary-3: #70a9ff;
 
   --color-secondary-1: #48cae4;
@@ -66,40 +66,84 @@ body {
   background-image: var(--background-color);
   background-size: cover;
   background-repeat: no-repeat;
-  // min-height: 100vh;
+  // min-height: 100vh; //para que ocupe todo el alto del dispositivo
+  // max-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
-  background-color: red;
 }
 
 .container {
-  max-width: 100%;
-  max-height: 110vh; //NOTE:dejar en 100vh
-  // min-height: calc(100vh - 8vw);
-  margin: 1vw auto; //NOTE:dejar margin 0 auto, ahora esta asi para desarrollo y que salga un scroll
+  width: 100%;
+  height: 100vh;
+  // min-height: calc(100vh - 8vw); // un peco menos que el body
+  // max-height: 100vh;
+  // margin: 0vw auto;
   // background-color: #fff;
   border-radius: 0px;
-  overflow: hidden;
   box-shadow: 0 2rem 6rem 0.5rem rgba(var(--color-grey-dark-1), 0.2);
 
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 7rem minmax(100rem, auto);
+  grid-template-columns: minmax(4rem, 25rem) 1fr;
+  grid-template-rows: auto calc(100vh - 6rem) 3rem;
   grid-template-areas:
-    "head head"
-    "list project";
+    "nav head"
+    "list project"
+    "copy project";
 
-  //FIX:poner media queries y revisar margin max height min height
+  //FIX:poner media queries y revisar margin max height min height. revisar forkify
 }
 
-header {
+.header {
   grid-area: head;
-  background-color: var(--color-primary-1);
-  //poner flex para el p al lado del h1
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-primary-2);
+  padding: 0 2rem;
 }
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  // justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: indianred;
+
+  // padding-right: 12rem;
+
+  &__btn--add-project {
+    margin-left: 3rem;
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  //NOTE:poner transparente bk
+
+  svg {
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: var(--color-grey-dark-1);
+  }
+
+  &--big span {
+    margin-left: 1rem;
+  }
+}
+//NOTE:poner efecto hover que cambie de color el boton
 
 .project {
+  overflow-y: auto;
   grid-area: project;
   background-color: var(--color-white);
+  font-size: 40px;
+}
+
+.copyright {
+  grid-area: copy;
+  background-color: red;
 }

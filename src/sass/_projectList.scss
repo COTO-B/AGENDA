@@ -1,6 +1,17 @@
 .project-list {
   grid-area: list;
+  //NOTE:revisar flex o mejor una grid
+  // display: flex;
+  // flex-direction: column;
+
   background-color: var(--color-primary-1);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list {
+  // overflow: auto;
 }
 
 .preview {

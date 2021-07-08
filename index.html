@@ -20,14 +20,27 @@
 
   <body>
     <div class="container">
-      <header>
+      <header class="header">
         <h1>AGENDA</h1>
         <p>Organize your life</p>
       </header>
 
-      <section class="project-list">
-        <div>NEW PROJECT(BTN)</div>
+      <nav class="nav">
+        <button class="nav__btn-menu btn">
+          <svg>
+            <use href="src/img/icons.svg#icon-menu"></use>
+          </svg>
+        </button>
 
+        <button class="nav__btn--add-project btn--big btn">
+          <svg>
+            <use href="src/img/icons.svg#icon-add-outline"></use>
+          </svg>
+          <span>New Project</span>
+        </button>
+      </nav>
+
+      <section class="project-list">
         <ul class="list">
           <li class="preview">
             <a class="preview__link preview__link--active" href="">
@@ -52,10 +65,27 @@
               </svg>
             </a>
           </li>
-        </ul>
 
-        <p class="copyright">&copy; Copyright by José Miguel Bermúdez - 2021</p>
+          <li class="preview">
+            <a class="preview__link preview__link--active" href="">
+              <svg>
+                <use href="src/img/icons.svg#icon-controller-record"></use>
+              </svg>
+              <h3 class="preview__title">Project 3</h3>
+              <svg>
+                <use href="src/img/icons.svg#icon-dots-three-horizontal"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
       </section>
+
+      <div class="copyright">
+        <p>
+          &copy;PONER COMO LINK A MI PORTAFOLIO Copyright by José Miguel
+          Bermúdez - 2021
+        </p>
+      </div>
 
       <section class="project">
         <div class="project__header">
