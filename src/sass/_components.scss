@@ -1,0 +1,33 @@
+.btn {
+  color: var(--color-primary-1);
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  background-color: var(--color-primary-3);
+  border: none;
+
+  //REVIEW: poner misma dstantcia arriba y abajo del bton
+  padding: 0.6rem 1rem;
+  border-radius: 10rem;
+
+  transition: all 0.4s;
+
+  svg {
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: var(--color-primary-1);
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--color-secondary-1);
+  }
+
+  &--big span {
+    margin-left: 1rem;
+  }
+}
+//NOTE:poner efecto hover que cambie de color el boton

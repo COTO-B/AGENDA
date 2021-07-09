@@ -1,8 +1,7 @@
 .project-list {
   grid-area: list;
-  //NOTE:revisar flex o mejor una grid
-  // display: flex;
-  // flex-direction: column;
+
+  padding: 9px 0;
 
   background-color: var(--color-primary-1);
 
@@ -10,9 +9,70 @@
   overflow-x: hidden;
 }
 
-.list {
-  // overflow: auto;
+.preview {
+  list-style-type: none;
+
+  &__title {
+    flex-grow: 1;
+  }
+
+  &__link {
+    //REVIEW:ver si se necesita poner esto en link y visited
+    // &:link,
+    // &:visited {
+    // }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 2px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-grey-dark-3);
+
+    transition: all 0.4s;
+
+    &:hover,
+    &:active {
+      background-color: var(--color-grey-light-4);
+      border-radius: 6px;
+      transform: translateY(-2px);
+    }
+
+    //clase activa
+    &--active {
+      background-color: var(--color-grey-light-4);
+      border-radius: 6px;
+    }
+
+    svg {
+      height: 3.45rem;
+      width: 3.45rem;
+      padding: 0 10px;
+      fill: var(--color-primary-3);
+
+      &:last-child:hover,
+      &:last-child:active {
+        fill: var(--color-grey-dark-3);
+      }
+    }
+  }
 }
 
-.preview {
+.copyright {
+  grid-area: copy;
+  display: flex;
+  align-items: center;
+  color: var(--color-grey-dark-2);
+  font-size: 1rem;
+  padding: 0 1rem;
+  background-color: var(--color-primary-1);
+
+  .portfolio {
+    &:link,
+    &:visited {
+      color: var(--color-grey-dark-2);
+    }
+  }
 }

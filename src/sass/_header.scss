@@ -1,0 +1,22 @@
+.header {
+  grid-area: head;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-2);
+  & > * {
+    padding: 0 2rem;
+  }
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  // justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary-1);
+
+  &__btn--add-project {
+    margin-left: 4.5rem;
+  }
+}
