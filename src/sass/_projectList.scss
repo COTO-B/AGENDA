@@ -1,7 +1,7 @@
 .project-list {
   grid-area: list;
 
-  padding: 2rem 0;
+  padding-top: 2rem;
 
   background-color: var(--color-primary-1);
 
@@ -14,6 +14,7 @@
 
   &__title {
     flex-grow: 1;
+    margin-left: 5px;
   }
 
   &__link {
@@ -25,41 +26,41 @@
     align-items: center;
     justify-content: space-between;
 
-    padding: 2px 0;
+    padding: 7px 4px;
     font-size: 1.15rem;
     font-weight: 600;
     text-decoration: none;
     color: var(--color-grey-dark-3);
+    border-radius: 6px;
 
     transition: all 0.4s;
 
     &:hover,
     &:active {
       background-color: var(--color-grey-light-4);
-      border-radius: 6px;
-      transform: translateY(-2px);
-    }
-
-    //clase activa
-    &--active {
-      background-color: var(--color-grey-light-4);
-      border-radius: 6px;
     }
 
     svg {
-      height: 3.45rem;
-      width: 3.45rem;
-      padding: 0 10px;
+      height: 1.6rem;
+      width: 1.6rem;
+
       fill: var(--color-primary-3);
+      transition: all 0.4s;
 
       &:last-child:hover,
       &:last-child:active {
         fill: var(--color-grey-dark-3);
       }
     }
+
+    //clase activa
+    &--active {
+      background-color: var(--color-grey-light-4);
+    }
   }
 }
 
+//FIX:arreglar para que tenga mas espacio arriba y abajo y no desaparezca
 .copyright {
   grid-area: copy;
   display: flex;
@@ -67,6 +68,7 @@
   color: var(--color-grey-dark-2);
   font-size: 1rem;
   padding: 0 1rem;
+
   background-color: var(--color-primary-1);
 
   .portfolio {

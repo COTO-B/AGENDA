@@ -16,6 +16,12 @@
   padding: 1rem 1rem 0.5rem 1rem;
   background-color: var(--color-primary-1);
 
+  svg {
+    height: 1.3rem;
+    width: 1.3rem;
+    fill: var(--color-primary-1);
+  }
+
   &__btn--add-project {
     margin-left: 4.5rem;
   }

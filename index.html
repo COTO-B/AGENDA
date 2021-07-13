@@ -27,13 +27,13 @@
       </header>
 
       <nav class="nav">
-        <button class="nav__btn-menu btn">
+        <button class="btn btn--big nav__btn-menu">
           <svg>
             <use href="src/img/icons.svg#icon-menu"></use>
           </svg>
         </button>
 
-        <button class="nav__btn--add-project btn--big btn">
+        <button class="btn btn--big nav__btn--add-project">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
@@ -44,38 +44,38 @@
       <section class="project-list">
         <ul class="list">
           <li class="preview">
+            <!--REVIEW:poner link para mostrar en detalle project-->
             <a class="preview__link preview__link--active" href="">
               <svg>
                 <use href="src/img/icons.svg#icon-controller-record"></use>
               </svg>
               <h3 class="preview__title">Project 911111111</h3>
-              <svg>
-                <use href="src/img/icons.svg#icon-dots-three-horizontal"></use>
-              </svg>
+
+              <button class="btn btn--small preview__btn--window">
+                <svg>
+                  <use
+                    href="src/img/icons.svg#icon-dots-three-horizontal"
+                  ></use>
+                </svg>
+              </button>
             </a>
           </li>
 
+          <!--REVIEW: despues borrar este LI-->
           <li class="preview">
             <a class="preview__link" href="">
               <svg>
                 <use href="src/img/icons.svg#icon-controller-record"></use>
               </svg>
               <h3 class="preview__title">Project 2</h3>
-              <svg>
-                <use href="src/img/icons.svg#icon-dots-three-horizontal"></use>
-              </svg>
-            </a>
-          </li>
 
-          <li class="preview">
-            <a class="preview__link" href="">
-              <svg>
-                <use href="src/img/icons.svg#icon-controller-record"></use>
-              </svg>
-              <h3 class="preview__title">Project 3</h3>
-              <svg>
-                <use href="src/img/icons.svg#icon-dots-three-horizontal"></use>
-              </svg>
+              <button class="btn btn--small preview__btn--window">
+                <svg>
+                  <use
+                    href="src/img/icons.svg#icon-dots-three-horizontal"
+                  ></use>
+                </svg>
+              </button>
             </a>
           </li>
         </ul>
@@ -89,16 +89,33 @@
       </p>
 
       <section class="project">
-        <div class="project__name">Project 1</div>
+        <h2 class="project__name">Project 1</h2>
         <p class="project__description">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus animi
           ullam dolores quo molestiae voluptatum commodi dolore nisi voluptas
           itaque.
         </p>
 
-        <!--poner svg de circulo con check cuando hago click y marcar como una linea el texto, agregar svg de eliminar. y uno de solo circulo cuando no hago click-->
+        <!--REVIEW:poner svg de circulo con check cuando hago click y marcar como una linea el texto, agregar svg de eliminar. y uno de solo circulo cuando no hago click-->
         <ul class="project__task-list">
-          <li class="project__task">plan the project</li>
+          <li class="project__task">
+            <button class="btn btn--small project__btn-check">
+              <svg>
+                <use href="src/img/icons.svg#icon-checkmark-outline"></use>
+              </svg>
+            </button>
+            <h4>task 1 check</h4>
+          </li>
+
+          <li class="project__task">
+            <button class="btn btn--small">
+              <svg>
+                <use href="src/img/icons.svg#icon-circle1"></use>
+              </svg>
+            </button>
+            <h4>task 2</h4>
+          </li>
+
           <li class="project__task">plan the project</li>
           <li class="project__task">plan the project</li>
           <li class="project__task">plan the project</li>
@@ -106,7 +123,7 @@
           <li class="project__task">plan the project</li>
         </ul>
 
-        <button class="project__btn--add-task btn--big btn">
+        <button class="btn btn--big project__btn--add-task">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>

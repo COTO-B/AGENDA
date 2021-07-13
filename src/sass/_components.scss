@@ -1,5 +1,6 @@
-.btn {
+.btn--big {
   color: var(--color-primary-1);
+  font-size: 1.1rem;
   font-weight: 600;
 
   display: flex;
@@ -9,14 +10,14 @@
   background-color: var(--color-primary-3);
   border: none;
 
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 0.85rem;
   border-radius: 10rem;
 
   transition: all 0.4s;
 
   svg {
-    height: 2.25rem;
-    width: 2.25rem;
+    height: 1.3rem;
+    width: 1.3rem;
     fill: var(--color-primary-1);
   }
 
@@ -25,8 +26,18 @@
     background-color: var(--color-secondary-1);
   }
 
-  &--big span {
-    margin-left: 1rem;
+  & span {
+    margin-left: 0.5rem;
   }
 }
-//NOTE:poner efecto hover que cambie de color el boton
+
+.btn--small {
+  border: none;
+  // height: auto;
+  // width: auto;
+  background-color: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
