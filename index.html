@@ -44,7 +44,7 @@
       <section class="project-list">
         <ul class="list">
           <li class="preview">
-            <!--REVIEW:poner link para mostrar en detalle project-->
+            <!--REVIEW:poner link para mostrar en detalle project. tambien cuando hago js sacar el preview link solo dejar uno no las dos clases con js agrego el --active. cara feliz en la ventana amarilla y sin colo uncompleated. este reemplaza el color del proyect con la cara feliz amarilla-->
             <a class="preview__link preview__link--active" href="">
               <svg>
                 <use href="src/img/icons.svg#icon-controller-record"></use>
@@ -90,30 +90,77 @@
 
       <section class="project">
         <h2 class="project__name">Project 1</h2>
+
         <p class="project__description">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus animi
           ullam dolores quo molestiae voluptatum commodi dolore nisi voluptas
           itaque.
         </p>
 
-        <!--REVIEW:poner svg de circulo con check cuando hago click y marcar como una linea el texto, agregar svg de eliminar. y uno de solo circulo cuando no hago click-->
+        <!--REVIEW:poner svg de circulo con check cuando hago click y marcar como una linea el texto. REvisar como sacar y poner el check con js, poner y sacar clase?. Si no pongo fecha sacar el boton. poner los tres puntos y sacar edit y trash (ponerlos en los 3 puntos)-->
         <ul class="project__task-list">
           <li class="project__task">
-            <button class="btn btn--small project__btn-check">
-              <svg>
-                <use href="src/img/icons.svg#icon-checkmark-outline"></use>
-              </svg>
-            </button>
-            <h4>task 1 check</h4>
+            <div class="project__task-header">
+              <button class="btn btn--small project__btn project__btn-check">
+                <svg>
+                  <use href="src/img/icons.svg#icon-circle1"></use>
+                </svg>
+              </button>
+
+              <button
+                class="btn btn--small project__btn project__btn-eliminate"
+              >
+                <svg>
+                  <use href="src/img/icons.svg#icon-trash"></use>
+                </svg>
+              </button>
+
+              <!--FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha-->
+              <button class="btn btn--small project__btn project__btn-date">
+                <svg>
+                  <use href="src/img/icons.svg#icon-calendar"></use>
+                </svg>
+                <span>Jul 1</span>
+              </button>
+            </div>
+
+            <h4 class="project__task-description">
+              task 2 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Minima laudantium ipsa ducimus possimus accusantium fugiat
+              provident commodi asperiores totam perspiciatis iure, dolor
+              consectetur eveniet veniam nihil id cupiditate voluptas magni.
+            </h4>
           </li>
 
           <li class="project__task">
-            <button class="btn btn--small">
+            <div class="project__task-header">
+              <button class="btn btn--small project__btn-check">
+                <svg>
+                  <use href="src/img/icons.svg#icon-checkmark-outline"></use>
+                </svg>
+              </button>
+
+              <!--FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha-->
+              <button class="btn btn--small project__btn-date">
+                <svg>
+                  <use href="src/img/icons.svg#icon-calendar"></use>
+                </svg>
+                <span>Jul 1</span>
+              </button>
+
+              <!-- <button class="btn btn--small project__btn-edit">
               <svg>
-                <use href="src/img/icons.svg#icon-circle1"></use>
+                <use href="src/img/icons.svg#icon-edit-pencil"></use>
               </svg>
             </button>
-            <h4>task 2</h4>
+
+            <button class="btn btn--small project__btn-eliminate">
+              <svg>
+                <use href="src/img/icons.svg#icon-trash"></use>
+              </svg>
+            </button> -->
+            </div>
+            <h4 class="project__task-description">task 1 check</h4>
           </li>
 
           <li class="project__task">plan the project</li>

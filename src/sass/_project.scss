@@ -7,9 +7,11 @@
   &__name {
     font-size: 2rem;
     font-weight: 600;
+
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--color-grey-light-2);
+
     // border-top: 1px solid var(--color-grey-light-4); REVIEW: ver si poner lineas arriba para encasillar name y descr. lo mismo para tasky boton
   }
 
@@ -25,18 +27,37 @@
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     list-style-type: none;
-    border-bottom: 1px solid var(--color-grey-light-2);
+    // border-bottom: 1px solid var(--color-grey-light-2);
   }
 
-  //FIX: aca quede, poner el resto de los svg fecha. tb poner fecha svg en titulo
   &__task {
-    display: flex;
-    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-grey-light-2);
 
-    svg {
-      height: 1.3rem;
-      width: 1.3rem;
-      fill: var(--color-grey-dark-1);
+    &-header {
+      display: flex;
+      align-items: center;
+      //FIX:revisar esto, mover a btn
+      svg {
+        height: 1.3rem;
+        width: 1.3rem;
+        fill: var(--color-grey-dark-1);
+      }
     }
+    &-description {
+      font-size: 1.1rem;
+      //FIX:poner hover de svg edit sobre descricption
+    }
+  }
+
+  //FIX:revisar esto, no funca
+  &__btn {
+    background-color: royalblue;
+    fill: royalblue;
+    font-size: 5rem;
+    height: 4rem;
+
+    //REVIEW:poner colores a los botones, calendario rojo
   }
 }
