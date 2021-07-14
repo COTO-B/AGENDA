@@ -3,6 +3,7 @@
   overflow-y: auto;
   background-color: var(--color-white);
   padding: 2.3rem 4rem;
+  word-break: break-word;
 
   &__name {
     font-size: 2rem;
@@ -11,8 +12,6 @@
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--color-grey-light-2);
-
-    // border-top: 1px solid var(--color-grey-light-4); REVIEW: ver si poner lineas arriba para encasillar name y descr. lo mismo para tasky boton
   }
 
   &__description {
@@ -23,41 +22,47 @@
     border-bottom: 1px solid var(--color-grey-light-4);
   }
 
-  &__task-list {
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    list-style-type: none;
-    // border-bottom: 1px solid var(--color-grey-light-2);
-  }
-
   &__task {
+    list-style-type: none;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--color-grey-light-2);
 
     &-header {
       display: flex;
-      align-items: center;
-      //FIX:revisar esto, mover a btn
-      svg {
-        height: 1.3rem;
-        width: 1.3rem;
-        fill: var(--color-grey-dark-1);
-      }
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
     }
     &-description {
       font-size: 1.1rem;
-      //FIX:poner hover de svg edit sobre descricption
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
-  //FIX:revisar esto, no funca
   &__btn {
-    background-color: royalblue;
-    fill: royalblue;
-    font-size: 5rem;
-    height: 4rem;
+    font-size: 1.2rem;
+    fill: var(--color-grey-dark-1);
 
-    //REVIEW:poner colores a los botones, calendario rojo
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    svg {
+      height: 1.3rem;
+      width: 1.3rem;
+    }
+
+    &-check {
+      fill: var(--color-green-check);
+    }
+
+    &-date {
+      fill: var(--color-primary-3);
+      color: var(--color-primary-3);
+    }
   }
 }
+
+//FIX:ACA QUEDE, HACER VENTANAS
