@@ -1,5 +1,20 @@
 //REVIEW:revisar archivo upload forkify
 
+.add-project-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  background-color: white;
+  border-radius: 9px;
+
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -7,7 +22,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); //este no funciona en firefox. pero da igual
+
   z-index: 100;
   transition: all 0.5s;
 }

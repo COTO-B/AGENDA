@@ -27,13 +27,13 @@
       </header>
 
       <nav class="nav">
-        <button class="btn btn--big nav__btn-menu">
+        <button type="button" class="btn btn--big nav__btn-menu">
           <svg>
             <use href="src/img/icons.svg#icon-menu"></use>
           </svg>
         </button>
 
-        <button class="btn btn--big nav__btn--add-project">
+        <button type="button" class="btn btn--big nav__btn--add-project">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
@@ -51,7 +51,7 @@
               </svg>
               <h3 class="preview__title">Project 911111111</h3>
 
-              <button class="btn btn--small preview__btn--window">
+              <button type="button" class="btn btn--small preview__btn--window">
                 <svg>
                   <use
                     href="src/img/icons.svg#icon-dots-three-horizontal"
@@ -69,7 +69,7 @@
               </svg>
               <h3 class="preview__title">Project 2</h3>
 
-              <button class="btn btn--small preview__btn--window">
+              <button type="button" class="btn btn--small preview__btn--window">
                 <svg>
                   <use
                     href="src/img/icons.svg#icon-dots-three-horizontal"
@@ -101,20 +101,29 @@
         <ul class="project__task-list">
           <li class="project__task">
             <div class="project__task-header">
-              <button class="btn btn--small project__btn project__btn-circule">
+              <button
+                type="button"
+                class="btn btn--small project__btn project__btn-circule"
+              >
                 <svg>
                   <use href="src/img/icons.svg#icon-circle1"></use>
                 </svg>
               </button>
 
-              <button class="btn btn--small project__btn project__btn-delete">
+              <button
+                type="button"
+                class="btn btn--small project__btn project__btn-delete"
+              >
                 <svg>
                   <use href="src/img/icons.svg#icon-trash"></use>
                 </svg>
               </button>
 
               <!--FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha-->
-              <button class="btn btn--small project__btn project__btn-date">
+              <button
+                type="button"
+                class="btn btn--small project__btn project__btn-date"
+              >
                 <svg>
                   <use href="src/img/icons.svg#icon-calendar"></use>
                 </svg>
@@ -164,7 +173,7 @@
           <li class="project__task">plan the project</li>
         </ul>
 
-        <button class="btn btn--big project__btn--add-task">
+        <button type="button" class="btn btn--big project__btn--add-task">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
@@ -175,7 +184,12 @@
     <!--fin container-->
 
     <!--ventanas botones-->
-    <div class="overlay hidden"></div>
-    <div class="add-project-window hidden"></div>
+    <div class="overlay"></div>
+    <div class="add-project-window">
+      <button type="button" class="btn--close-project-window">&times;</button>
+      <!--poner name color(hacer paleta de colores) y description-->
+      <div>qqqqqqqqqqqq</div>
+      aaaaaaa
+    </div>
   </body>
 </html>
