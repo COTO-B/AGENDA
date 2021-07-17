@@ -132,12 +132,12 @@
             </div>
 
             <!--cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada-->
-            <h4 class="project__task-description">
+            <p class="project__task-description">
               task 1 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Minima laudantium ipsa ducimus possimus accusantium fugiat
               provident commodi asperiores totam perspiciatis iure, dolor
               consectetur eveniet veniam nihil id cupiditate voluptas magni.
-            </h4>
+            </p>
           </li>
 
           <li class="project__task">
@@ -163,7 +163,7 @@
               </button>
             </div>
 
-            <h4 class="project__task-description">task 21111111</h4>
+            <p class="project__task-description">task 21111111</p>
           </li>
 
           <li class="project__task">plan the project</li>
@@ -187,9 +187,51 @@
     <div class="overlay"></div>
     <div class="add-project-window">
       <button type="button" class="btn--close-project-window">&times;</button>
-      <!--poner name color(hacer paleta de colores) y description-->
-      <div>qqqqqqqqqqqq</div>
-      aaaaaaa
+      <!--poner name color(hacer paleta de colores) y description, REVIEW:saca value es solo para desarrollo. revisar si puedo ocupar un boton para submit o mejor ocupar input type submit-->
+
+      <form class="upload">
+        <label for="name">Name</label>
+        <input
+          value="test"
+          required
+          maxlength="10"
+          id="name"
+          name="project-name"
+          type="text"
+        />
+
+        <label for="color">Color</label>
+        <select name="project-color" id="color" required>
+          <option value="berry-red">
+            <span>
+              <svg>
+                <use href="src/img/icons.svg#icon-controller-record"></use>
+              </svg>
+            </span>
+            <span>berry red</span>
+          </option>
+
+          <option value="red">red</option>
+
+          <option value="salmon">
+            <!--FIX:ocupar esta forma-->
+            <span
+              >en vez de poner svg aca hacer un circulo con css ver todo
+              span</span
+            ><span>salmon</span>
+          </option>
+        </select>
+
+        <label for="description">Name</label>
+        <input
+          value="test description.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eaque, alias natus labore nisi deserunt voluptas repudiandae, at iste voluptatum fuga consequuntur enim, dolorem magnam quos impedit dicta repellat debitis architecto aperiam. Ratione, repellat."
+          required
+          maxlength="255"
+          id="description"
+          name="project-description"
+          type="text"
+        />
+      </form>
     </div>
   </body>
 </html>
