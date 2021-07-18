@@ -141,6 +141,7 @@
           </li>
 
           <li class="project__task">
+            <!--poner hover efect en botones, en el circulo poner circulo verde check con js los otros dos cambiar de colo no mas-->
             <div class="project__task-header">
               <button class="btn btn--small project__btn project__btn-check">
                 <svg>
@@ -203,26 +204,18 @@
         <label for="color">Color</label>
         <select name="project-color" id="color" required>
           <option value="berry-red">
-            <span>
-              <svg>
-                <use href="src/img/icons.svg#icon-controller-record"></use>
-              </svg>
-            </span>
             <span>berry red</span>
           </option>
 
           <option value="red">red</option>
 
           <option value="salmon">
-            <!--FIX:ocupar esta forma-->
-            <span
-              >en vez de poner svg aca hacer un circulo con css ver todo
-              span</span
-            ><span>salmon</span>
+            <span class="upload__color upload__color--3"></span>
+            <span class="upload__color-name">salmon</span>
           </option>
         </select>
 
-        <label for="description">Name</label>
+        <label for="description">Description</label>
         <input
           value="test description.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eaque, alias natus labore nisi deserunt voluptas repudiandae, at iste voluptatum fuga consequuntur enim, dolorem magnam quos impedit dicta repellat debitis architecto aperiam. Ratione, repellat."
           required

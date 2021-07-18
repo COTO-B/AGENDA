@@ -32,6 +32,22 @@
   visibility: hidden;
   opacity: 0;
 }
+
+.upload {
+  & label {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__color {
+  }
+
+  &__color-name {
+    background-color: blue;
+    font-size: 40rem;
+  }
+}
+
 //FIX:ACA QUEDE, HACER VENTANAS
 
 //el generatemarkup de addrecipeview no tiene nada por lo que cuando en el view lo llamamos no tienen anda en e view es el this.generatemarkuo que viene de cada una de las otras view, esto lo ocupamos para render la data. revisar como funciona el suscriber model
