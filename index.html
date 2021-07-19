@@ -191,8 +191,9 @@
       <!--poner name color(hacer paleta de colores) y description, REVIEW:saca value es solo para desarrollo. revisar si puedo ocupar un boton para submit o mejor ocupar input type submit-->
 
       <form class="upload">
-        <label for="name">Name</label>
+        <label class="upload__name" for="name">Name</label>
         <input
+          class="upload__input"
           value="test"
           required
           maxlength="10"
@@ -201,29 +202,96 @@
           type="text"
         />
 
-        <label for="color">Color</label>
-        <select name="project-color" id="color" required>
-          <option value="berry-red">
-            <span>berry red</span>
-          </option>
+        <!--boton para desplegar un div para el contenedor del poppu, despues otro div para adentro del popup y despues un ul y li(adentro 2 span). PARA JS PONER DATA-SET-->
 
-          <option value="red">red</option>
+        <div class="color">
+          <label class="upload__color" for="color">Color</label>
 
-          <option value="salmon">
-            <span class="upload__color upload__color--3"></span>
-            <span class="upload__color-name">salmon</span>
-          </option>
-        </select>
+          <button class="upload__input color__btn-dropdown">
+            <span class="color__item-circle color__item-circle--default"></span>
+            <span>Electric Blue</span>
+          </button>
 
-        <label for="description">Description</label>
-        <input
-          value="test description.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eaque, alias natus labore nisi deserunt voluptas repudiandae, at iste voluptatum fuga consequuntur enim, dolorem magnam quos impedit dicta repellat debitis architecto aperiam. Ratione, repellat."
+          <!--aca quede FIX: ul va el hidden agregar funcionalidad con JS-->
+          <ul class="color__list">
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--1"></span>
+              <span> Berry Red </span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--2"></span>
+              <span>Red</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--3"></span>
+              <span>Salmon</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--4"></span>
+              <span>Dark Orange</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--5"></span>
+              <span>Cyber Yellow</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--6"></span>
+              <span>Spring Bud</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--7"></span>
+              <span>Green</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--8"></span>
+              <span>Medium Spring</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--9"></span>
+              <span>Elecctric Blue</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--10"></span>
+              <span>Azure</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--11"></span>
+              <span>Han Purple</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--12"></span>
+              <span>Electric Purple</span>
+            </li>
+
+            <li class="color__item">
+              <span class="color__item-circle color__item-circle--13"></span>
+              <span>Magenta</span>
+            </li>
+          </ul>
+        </div>
+
+        <label class="upload__description" for="description">Description</label>
+        <textarea
+          class="upload__input"
           required
-          maxlength="255"
+          maxlength="150"
           id="description"
           name="project-description"
-          type="text"
-        />
+          wrap="hard"
+        >
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat quos provident sed quis doloremque! Tempora, sunt voluptatem dignissimos in quibusdam exercitationem, ipsum magni nam incidunt beatae fugit quia aliquam, dicta voluptatum quisquam aspernatur illo aliquid eos. Asperiores eaque sint, impedit tenetur quae natus, maxime est, dicta sunt debitis sed praesentium.</textarea
+        >
       </form>
     </div>
   </body>
