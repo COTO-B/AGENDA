@@ -97,7 +97,7 @@
           itaque.
         </p>
 
-        <!--REVIEW:poner svg de circulo con check cuando hago click y marcar como una linea el texto. REvisar como sacar y poner el check con js, poner y sacar clase?. Si no pongo fecha sacar el boton. poner los tres puntos y sacar edit y trash (ponerlos en los 3 puntos)-->
+        <!--REVIEW:poner svg de circulo con check cuando hago click. REvisar como sacar y poner el check con js, poner y sacar clase?. Si no pongo fecha sacar el boton. en project task list poner scroll para que el boton add siempre este visible-->
         <ul class="project__task-list">
           <li class="project__task">
             <div class="project__task-header">
@@ -186,8 +186,8 @@
 
     <!--ventanas botones-->
     <!--poner hidden a overlay y add para ocultarlos-->
-    <div class="overlay"></div>
-    <div class="add-project-window">
+    <div class="overlay hidden"></div>
+    <div class="add-project-window hidden">
       <button type="button" class="btn--close-project-window">&times;</button>
       <!--poner name color(hacer paleta de colores) y description, REVIEW:saca value es solo para desarrollo. revisar si puedo ocupar un boton para submit o mejor ocupar input type submit. EN JS transformar la data de la for y dejarla como array (formData API) -->
 
@@ -213,8 +213,7 @@
             <span>Electric Blue</span>
           </button>
 
-          <!--aca quede FIX: ul va el hidden agregar funcionalidad con JS-->
-          <ul class="color__list">
+          <ul class="color__list hidden">
             <li class="color__item" data-color="1">
               <span class="color__item-circle color__item-circle--1"></span>
               <span>Berry Red</span>
@@ -225,57 +224,57 @@
               <span>Red</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="3">
               <span class="color__item-circle color__item-circle--3"></span>
               <span>Salmon</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="4">
               <span class="color__item-circle color__item-circle--4"></span>
               <span>Dark Orange</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="5">
               <span class="color__item-circle color__item-circle--5"></span>
               <span>Cyber Yellow</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="6">
               <span class="color__item-circle color__item-circle--6"></span>
               <span>Spring Bud</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="7">
               <span class="color__item-circle color__item-circle--7"></span>
               <span>Green</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="8">
               <span class="color__item-circle color__item-circle--8"></span>
               <span>Medium Spring</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="9">
               <span class="color__item-circle color__item-circle--9"></span>
               <span>Elecctric Blue</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="10">
               <span class="color__item-circle color__item-circle--10"></span>
               <span>Azure</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="11">
               <span class="color__item-circle color__item-circle--11"></span>
               <span>Han Purple</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="12">
               <span class="color__item-circle color__item-circle--12"></span>
               <span>Electric Purple</span>
             </li>
 
-            <li class="color__item">
+            <li class="color__item" data-color="13">
               <span class="color__item-circle color__item-circle--13"></span>
               <span>Magenta</span>
             </li>
@@ -284,15 +283,23 @@
 
         <label class="upload__description" for="description">Description</label>
         <textarea
-          class="upload__input"
+          class="upload__input upload__input-description"
           required
           maxlength="150"
           id="description"
           name="project-description"
           wrap="hard"
         >
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat quos provident sed quis doloremque! Tempora, sunt voluptatem dignissimos in quibusdam exercitationem, ipsum magni nam incidunt beatae fugit quia aliquam, dicta voluptatum quisquam aspernatur illo aliquid eos. Asperiores eaque sint, impedit tenetur quae natus, maxime est, dicta sunt debitis sed praesentium.</textarea
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat quos provident sed quis doloremque! Tempora, sunt voluptatem dignissimos in quibusdam exercitationem, ipsum magni nam incidunt beatae fugit quia aliquam, dicta voluptatum quisquam aspernatur illo aliquid eos. Asperiores eaque sint, impedit tenetur quae natus, maxime est, dicta sunt debitis sed praesentium.
+</textarea
         >
+
+        <button type="submit" class="btn btn--big upload__btn--add-project">
+          <svg>
+            <use href="src/img/icons.svg#icon-add-outline"></use>
+          </svg>
+          <span>Add project</span>
+        </button>
       </form>
     </div>
   </body>

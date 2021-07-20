@@ -65,14 +65,19 @@
       background-color: var(--color-grey-light-2);
     }
 
-    &:last-child {
-      height: 200px;
+    &-description {
+      height: 150px;
       resize: none;
     }
   }
-
+  //REVIEW:ver si sacar esto description doble esta confuso
   &__description {
     margin-top: 1rem;
+  }
+
+  &__btn--add-project {
+    margin: auto;
+    margin-top: 3rem;
   }
 }
 
