@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--meter font y favicon
+    <!--meter font(ocupar la de mapty) y favicon
     <link
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
       rel="stylesheet"
@@ -194,7 +194,7 @@
       <form class="upload">
         <label class="upload__name" for="name">Name</label>
         <input
-          class="upload__input"
+          class="upload__input upload__input-name"
           value="test"
           required
           maxlength="10"
@@ -209,7 +209,10 @@
           <label class="upload__color" for="color">Color</label>
 
           <button class="upload__input color__btn-dropdown">
-            <span class="color__item-circle color__item-circle--default"></span>
+            <span
+              class="color__item-circle color__item-circle--default"
+              data-color="9"
+            ></span>
             <span>Electric Blue</span>
           </button>
 
