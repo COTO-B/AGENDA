@@ -48,8 +48,8 @@
       fill: var(--color-primary-3);
       transition: all 0.4s;
 
-      &:last-child:hover,
-      &:last-child:active {
+      &:hover,
+      &:active {
         fill: var(--color-grey-dark-3);
       }
     }

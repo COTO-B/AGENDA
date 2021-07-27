@@ -1,5 +1,10 @@
 // libreria para generar id de hash
 
+//ordenar como
+//elements
+//functions
+//events handlers
+
 //ELEMENTS
 const colorsContainer = document.querySelector(".color__list");
 const colors = document.querySelectorAll(".color__item");
@@ -16,7 +21,13 @@ const inputProjectDescription = document.querySelector(
   ".upload__input-description"
 );
 
-//NEW PROJECT
+const projectList = document.querySelector(".list");
+
+//DATA
+//aca guardo los projectos
+projects = [];
+
+//NEW PROJECT BTN
 //open close window function
 const toggleProjectWindow = function () {
   overlay.classList.toggle("hidden");
@@ -74,21 +85,66 @@ colorsContainer.addEventListener("click", function (e) {
 
 //FIX:quede aca. crear un array donde esten todos los projects y adentro guardar como objeto(o clase) los proyectos y en el task del project hacer un array para guardar las task como objetos
 
-//ID. cambiar por una alibreria, mientras ocupar 2 random. meter esto cuando hace clik en el btn add project
+//RENDER LIST
+const renderProjectlist = function (project) {
+  //borrando todo el boton y sus tags. TODO:mover a otro lado borra cada proy
+  // projectList.innerHTML = "";
+
+  //FIX:quede aca no funciona el svg revisar forkify
+
+  //haciendo el markup
+  let markup = `
+  <li class="preview">
+  
+    <a class="preview__link preview__link--active" href="">
+      <span class="color__item-circle color__item-circle--${project.projectColor}"></span>
+      <h3 class="preview__title">${project.projectName}</h3>
+
+      <button type="button" class="btn btn--small preview__btn--window">
+        <svg class="preview__btn--edit">
+          <use
+            href="src/img/icons.svg#icon-dots-three-horizontal"
+          ></use>
+        </svg>
+      </button>
+    </a>
+</li>`;
+
+  //mostrar el boton seleccionado con el click
+  projectList.insertAdjacentHTML("afterbegin", markup);
+
+  //cambiar el color de project list
+  // document.querySelector(".preview__btn--edit").style.fill = "red";
+};
+
+//ID function. cambiar por una alibreria.
 const generateProjectId = function () {
   return Math.trunc(Math.random() * 10000000000000);
 };
 
-//Set Local Storage
+//Set Local Storage function
 const setLocalStorage = function () {
   localStorage.setItem("projects", JSON.stringify(projects));
 };
 
-//aca guardo los projectos
-projects = [];
+//Get local storage function
+const getLocalStorage = function () {
+  const data = JSON.parse(localStorage.getItem("projects"));
+  console.log(data);
 
-//guardo las task que despues empujo al projecto
-tasks = [];
+  if (!data) return;
+
+  projects = data;
+
+  //render la lista
+  projects.forEach((project) => {
+    renderProjectlist(project);
+  });
+};
+
+getLocalStorage();
+
+console.log(projects);
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -103,20 +159,23 @@ form.addEventListener("submit", function (e) {
 
   projects.push({
     projectId: generateProjectId(),
-    projectname: `${projectName}`,
+    projectName: `${projectName}`,
     projectColor: `${projectColor}`,
     projectDescription: `${projectDescription}`,
+    projectTask: [],
   });
   console.log(projects);
 
   // guardar el local storage. mapty
   setLocalStorage();
 
-  //FIX: ver como guardar la data. despues dejarlo con clases.. solo esta guardando la ultima en local sotarage revisar. tambien ver stringifly y parse
+  //FIX:  despues dejarlo con clases..
 
   //cerrar la ventana
   toggleProjectWindow();
+
+  //TODO:render en la lista. en la parte de arriba
+  //TODO:render en el detalle de peoject
 });
 
-const data = JSON.parse(localStorage.getItem("projects"));
-console.log(data);
+//TODO: poner el la lista de proyectos (renderprojectlist) y poner en detalle project (renderproject)
