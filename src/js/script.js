@@ -5,6 +5,11 @@
 //functions
 //events handlers
 
+//NOTE: importar para transpiling y polyfiling
+import "core-js/stable";
+
+import icons from "../img/icons.svg";
+
 //ELEMENTS
 const colorsContainer = document.querySelector(".color__list");
 const colors = document.querySelectorAll(".color__item");
@@ -25,7 +30,7 @@ const projectList = document.querySelector(".list");
 
 //DATA
 //aca guardo los projectos
-projects = [];
+let projects = [];
 
 //NEW PROJECT BTN
 //open close window function
@@ -47,7 +52,7 @@ btnNewProjectOpen.addEventListener("click", function () {
   toggleProjectWindow();
 });
 
-//close when click on button or outside of window project
+//close when click on button or outside of window project. poner las dos en una formula
 btnNewProjectClose.addEventListener("click", toggleProjectWindow);
 
 overlay.addEventListener("click", toggleProjectWindow);
@@ -87,24 +92,21 @@ colorsContainer.addEventListener("click", function (e) {
 
 //RENDER LIST
 const renderProjectlist = function (project) {
-  //borrando todo el boton y sus tags. TODO:mover a otro lado borra cada proy
+  //borrando todo el boton y sus tags.
   // projectList.innerHTML = "";
-
-  //FIX:quede aca no funciona el svg revisar forkify
 
   //haciendo el markup
   let markup = `
   <li class="preview">
   
-    <a class="preview__link preview__link--active" href="">
+    <a class="preview__link" href="">
       <span class="color__item-circle color__item-circle--${project.projectColor}"></span>
       <h3 class="preview__title">${project.projectName}</h3>
 
       <button type="button" class="btn btn--small preview__btn--window">
         <svg class="preview__btn--edit">
           <use
-            href="src/img/icons.svg#icon-dots-three-horizontal"
-          ></use>
+            href="${icons}#icon-dots-three-horizontal"></use>
         </svg>
       </button>
     </a>
@@ -169,12 +171,11 @@ form.addEventListener("submit", function (e) {
   // guardar el local storage. mapty
   setLocalStorage();
 
-  //FIX:  despues dejarlo con clases..
+  //FIX:  despues dejarlo con clases. como mapty
 
   //cerrar la ventana
   toggleProjectWindow();
 
-  //TODO:render en la lista. en la parte de arriba
   //TODO:render en el detalle de peoject
 });
 
