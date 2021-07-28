@@ -52,7 +52,8 @@ btnNewProjectOpen.addEventListener("click", function () {
   toggleProjectWindow();
 });
 
-//close when click on button or outside of window project. poner las dos en una formula
+//close when click on button or outside of window project. poner las dos en una formula.
+
 btnNewProjectClose.addEventListener("click", toggleProjectWindow);
 
 overlay.addEventListener("click", toggleProjectWindow);
