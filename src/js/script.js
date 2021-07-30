@@ -120,11 +120,6 @@ const renderProjectlist = function (project) {
   // document.querySelector(".preview__btn--edit").style.fill = "red";
 };
 
-//ID function. cambiar por una alibreria.
-const generateProjectId = function () {
-  return Math.trunc(Math.random() * 10000000000000);
-};
-
 //Set Local Storage function
 const setLocalStorage = function () {
   localStorage.setItem("projects", JSON.stringify(projects));
@@ -160,6 +155,8 @@ form.addEventListener("submit", function (e) {
   const projectColor = inputProjectColor.dataset.color;
   const projectDescription = inputProjectDescription.value;
 
+  //FIX:aca saque generateproject ID
+
   projects.push({
     projectId: generateProjectId(),
     projectName: `${projectName}`,
@@ -181,3 +178,15 @@ form.addEventListener("submit", function (e) {
 });
 
 //TODO: poner el la lista de proyectos (renderprojectlist) y poner en detalle project (renderproject)
+
+class Project {
+  //cambiar por una alibreria.
+  id = Math.trunc(Math.random() * 10000000000000);
+
+  constructor(name, color, description, tasks) {
+    this.name;
+    this.color;
+    this.description;
+    this.tasks; //va como array
+  }
+}
