@@ -71,7 +71,7 @@ export const btnNewProject = function () {
 //FIN BTN NEW PROJECT------------------------
 
 //REVIEW: FORM-----------------------
-let projects = [];
+
 export const createProjectObject = function () {
   //leer la form y guardar en local storage
 
@@ -91,6 +91,4 @@ export const createProjectObject = function () {
     projectDescription: `${inputProjectDescription}`,
     projectTask: [],
   };
-
-  //TODO:render en el detalle de peoject hacer otra funcion para eso
 };

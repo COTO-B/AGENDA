@@ -14,19 +14,15 @@ import { btnNewProject, createProjectObject } from "./header";
 import renderProjectList from "./projectList";
 import { toggleProjectWindow } from "./helpers";
 
-// const renderProjectList = function () {
-//   console.log("render");
-// };
-
 // IFFI. ver si ocupar iifi o no
 const APP = (function () {
   //NOTE:VARIABLES--------------
   const formEl = document.querySelector(".upload");
-
+  //save data
   let projects = [];
 
   //NOTE:FUNCTIONS---------------------------
-  //Get local storage function
+
   const getLocalStorage = function () {
     const data = JSON.parse(localStorage.getItem("projects"));
 
@@ -35,26 +31,23 @@ const APP = (function () {
     projects = data;
     console.log(projects);
 
-    //render la lista
+    //render project list
     projects.forEach((project) => {
       renderProjectList(project);
     });
   };
 
-  //Set Local Storage function. dejar como modulo para project y task con input si es project o task
+  //dejar como modulo para project y task con input si es project o task. otra opcion es midificar let project y uadar todo nuevvamente
   const setLocalStorage = function (projects) {
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
-  //save project
-  const saveProject = function () {};
-
-  //events
+  //NOTE:EVENTS
   const addListeners = function () {
     //new project
     btnNewProject();
 
-    //submit form
+    //create new proyect
     formEl.addEventListener("submit", function (e) {
       e.preventDefault();
       //get form input object and save on projects[]
@@ -64,15 +57,16 @@ const APP = (function () {
       console.log(projects);
       // cerrar la ventana
       toggleProjectWindow();
-      //render list
-      // elegir el ultimo del array
-      // renderProjectList(project[4]);
+      //render project on list
+      renderProjectList(projects[projects.length - 1]);
+    });
+    //FIX:aca quede hacer que cuando cambie el hash quede ese elemento seleccionado. tambien cambir projectlist con ID. idea identificar el id del hash que cambio y render project list.
+    window.addEventListener("hashchange", function () {
+      console.log("hola");
     });
   };
 
-  const ejemplo = function () {
-    console.log("ejemplo1");
-  };
+  //TODO:render el detalle del proy. dejar el ultimo proyecto creado como default y seleccionado en la lista y render el detalle
 
   //NOTE: INIT-------------------------------
   const init = function () {
@@ -87,8 +81,5 @@ const APP = (function () {
   init(); //ver donde poner esto. esta va al final para ejecutar espues de leer todo
   return {
     //poner aca lo que quiero llamar despues
-    ejemplo,
   };
 })();
-
-APP.ejemplo();

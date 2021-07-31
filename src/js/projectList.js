@@ -5,12 +5,18 @@ const renderProjectList = function (project) {
   //NOTE:VARIABLES
   const projectList = document.querySelector(".list");
 
+  const id = window.location.hash.slice(1);
+
   //haciendo el markup
   let markup = `
   <li class="preview">
   
-    <a class="preview__link" href="">
-      <span class="color__item-circle color__item-circle--${project.projectColor}"></span>
+    <a class="preview__link" ${
+      project.projectId === id ? "preview__link--active" : ""
+    } href="#${project.projectId}">
+      <span class="color__item-circle color__item-circle--${
+        project.projectColor
+      }"></span>
       <h3 class="preview__title">${project.projectName}</h3>
 
       <button type="button" class="btn btn--small preview__btn--window">
