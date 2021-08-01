@@ -18,6 +18,8 @@ import { toggleProjectWindow } from "./helpers";
 const APP = (function () {
   //NOTE:VARIABLES--------------
   const formEl = document.querySelector(".upload");
+  //REVIEW:este tb esta en projectlist no repetir
+  const projectList = document.querySelector(".list");
   //save data
   let projects = [];
 
@@ -31,7 +33,8 @@ const APP = (function () {
     projects = data;
     console.log(projects);
 
-    //render project list
+    //render project list. repetido revisae REVIEW:
+    projectList.innerHTML = "";
     projects.forEach((project) => {
       renderProjectList(project);
     });
@@ -50,19 +53,40 @@ const APP = (function () {
     //create new proyect
     formEl.addEventListener("submit", function (e) {
       e.preventDefault();
-      //get form input object and save on projects[]
+      //get form input project object and save on projects[]
       projects.push(createProjectObject());
-      // guardar el local storage.
+      // guardar el local storage.estoy guardando todo nuevamente todos los projects
       setLocalStorage(projects);
       console.log(projects);
       // cerrar la ventana
       toggleProjectWindow();
+      //change ID in URL hash
+      window.history.pushState(
+        null,
+        "",
+        `#${projects[projects.length - 1].projectId}`
+      );
+      console.log(projects[projects.length - 1].projectId);
       //render project on list
-      renderProjectList(projects[projects.length - 1]);
+      // renderProjectList(projects[projects.length - 1]);
+      //aca estamos render todo esto esta repetido revisar REVIEW:
+      projectList.innerHTML = "";
+      projects.forEach((project) => {
+        renderProjectList(project);
+      });
     });
-    //FIX:aca quede hacer que cuando cambie el hash quede ese elemento seleccionado. tambien cambir projectlist con ID. idea identificar el id del hash que cambio y render project list.
+
+    //render project detail
     window.addEventListener("hashchange", function () {
       console.log("hola");
+
+      //REVIEW::render project list, primero clear. este render tb esta arriba no repetir despues arreglar
+      projectList.innerHTML = "";
+      projects.forEach((project) => {
+        renderProjectList(project);
+      });
+
+      //FIX: aca quede, arreglar lo repetido de REVIEW: estoy render todo cada vez creo que da igual. hacer una funcion para no reperit todo. ver si el elemento projectList lo dejo solo en modulo projectlist e importar para no repetir. tambien poner en esta linea el render del detalle proyecto
     });
   };
 
