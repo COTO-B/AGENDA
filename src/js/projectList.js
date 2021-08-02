@@ -1,14 +1,13 @@
 //RENDER LIST
 import icons from "../img/icons.svg";
 
-const renderProjectList = function (projectObject) {
+const createProjectMarkup = function (projectObject) {
   //NOTE:VARIABLES
-  const projectList = document.querySelector(".list");
 
   const id = +window.location.hash.slice(1);
-  console.log(id, projectObject.projectId, id === projectObject.projectId);
+
   //haciendo el markup
-  let markup = `
+  const markup = `
   <li class="preview">
   
     <a class="preview__link ${
@@ -26,10 +25,9 @@ const renderProjectList = function (projectObject) {
         </svg>
       </button>
     </a>
-</li>`;
+  </li>`;
 
-  projectList.insertAdjacentHTML("afterbegin", markup);
-  //TODO:mostrar el boton seleccionado con el click, hacer en otra funcion, tambien render por default el primer proyecto, hacerlo en otra funcion ta vez despues en init
+  return markup;
 };
 
-export default renderProjectList;
+export default createProjectMarkup;

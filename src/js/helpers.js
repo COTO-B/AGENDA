@@ -1,9 +1,17 @@
 //open close window function
-export const toggleProjectWindow = function () {
-  const overlay = document.querySelector(".overlay");
+export const overlay = document.querySelector(".overlay");
+
+export const toggleWindow = function (type) {
   const projectWindow = document.querySelector(".add-project-window");
+  const taskWindow = document.querySelector(".add-task-window");
+  console.log(type);
+
   overlay.classList.toggle("hidden");
-  projectWindow.classList.toggle("hidden");
+
+  if (type === "project") {
+    projectWindow.classList.toggle("hidden");
+  }
+  if (type === "task") taskWindow.classList.toggle("hidden");
 };
 
 //ID

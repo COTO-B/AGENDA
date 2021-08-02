@@ -1,11 +1,10 @@
 //REVIEW:NEW PROJECT BTN----------------------------------------------------
-import { toggleProjectWindow, generateProjectId } from "./helpers";
+import { toggleWindow, generateProjectId, overlay } from "./helpers";
 
 export const btnNewProject = function () {
+  ///REVIEW: open close funcionalidad
   //NOTE:VARIABLES
   const btnNewProjectOpen = document.querySelector(".nav__btn--add-project");
-  //FIX: esoty repietiendo el overay en helper.js
-  const overlay = document.querySelector(".overlay");
 
   const btnShowColor = document.querySelector(".color__btn-dropdown");
 
@@ -15,9 +14,9 @@ export const btnNewProject = function () {
   const btnColorDropdown = document.querySelector(".color__btn-dropdown");
   const colorsContainer = document.querySelector(".color__list");
 
-  //open and reset form to default
+  //open project window and reset form to default
   btnNewProjectOpen.addEventListener("click", function () {
-    //FIX: estoy repitiendo formEl
+    //FIX: estoy repitiendo formEl, ver si exportar a app. talvez mover a variables
     const formEl = document.querySelector(".upload");
 
     btnShowColor.innerHTML = "";
@@ -28,25 +27,32 @@ export const btnNewProject = function () {
 
     formEl.reset();
 
-    toggleProjectWindow();
+    toggleWindow("project");
+  });
+  ///REVIEW: FIN open close funcionalidad
+
+  ////REVIEW: close funcionalidad
+  //close when click on button or outside of window project. poner las dos en una formula
+  btnNewProjectClose.addEventListener("click", function () {
+    toggleWindow("project");
   });
 
-  //close when click on button or outside of window project. poner las dos en una formula
-  btnNewProjectClose.addEventListener("click", toggleProjectWindow);
+  overlay.addEventListener("click", function () {
+    toggleWindow("project");
+  });
 
-  overlay.addEventListener("click", toggleProjectWindow);
-
+  ////REVIEW: FIN close funcionalidad
+  //////REVIEW:color funcionalidad
   //color dropdown
   btnColorDropdown.addEventListener("click", function (e) {
     e.preventDefault();
-
     //toggle hidden
     colorsContainer.classList.toggle("hidden");
   });
 
   //TODO:ver si añadir seleccion con el teclado.salir cuando hago click afuera del dropdown de los colores
 
-  //show selected color
+  //save and show selected color
   colorsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".color__item");
 
@@ -58,7 +64,7 @@ export const btnNewProject = function () {
 
     //haciendo el markup
     const markup = `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
-  <span>${projectColorName}</span>`;
+    <span>${projectColorName}</span>`;
 
     //mostrar el boton seleccionado con el click
     btnShowColor.insertAdjacentHTML("afterbegin", markup);
@@ -66,6 +72,8 @@ export const btnNewProject = function () {
     //toggle hidden
     colorsContainer.classList.toggle("hidden");
   });
+
+  //////REVIEW: FIN color funcionalidad
 };
 
 //FIN BTN NEW PROJECT------------------------
