@@ -10,21 +10,20 @@
 import "core-js/stable";
 
 import icons from "../img/icons.svg";
-import { btnNewProject, createProjectObject } from "./header";
+import { btnNewProject, createProjectObject, formProjectEl } from "./header";
 import createProjectMarkup from "./projectList";
 import { toggleWindow } from "./helpers";
+import { btnNewTask } from "./projectDetail";
 
 // IFFI. ver si ocupar iifi o no
 const APP = (function () {
   //NOTE:VARIABLES--------------
-  const formEl = document.querySelector(".upload");
-  //REVIEW:este tb esta en projectlist no repetir
+
   const projectList = document.querySelector(".list");
   //save data
   let projects = [];
 
   //NOTE:FUNCTIONS---------------------------
-
   const renderList = function () {
     projectList.innerHTML = "";
     projects.forEach((project) => {
@@ -36,12 +35,10 @@ const APP = (function () {
   };
 
   //render project detail
-
   const getLocalStorage = function () {
     const data = JSON.parse(localStorage.getItem("projects"));
     if (!data) return;
     projects = data;
-    renderList();
   };
 
   //dejar como modulo para project y task con input si es project o task. otra opcion es midificar let project y uadar todo nuevvamente
@@ -49,16 +46,14 @@ const APP = (function () {
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
-  //NOTE:EVENTS
+  //NOTE:EVENTS.
+  //FIX: si guardo en projetcs dejar aca todo el resto va en sus modulos y solo llamo a la funcion como ej project form functionality
   const addListeners = function () {
-    //FIX:aca quede ordernar segus escrito
-    //new project. TODO:dejar como event listener y despues llamar a btn
-    //open new project form
-    //poner listener del btnNewProjectOpen y adentro del event en esta hoja poner una funcion del markup(open and reset defaul) y despues otra funcion que llame a la funcionalidad del close btns y funcionalidad del dropdown
+    //Project form functionality
     btnNewProject();
 
-    //create new project
-    formEl.addEventListener("submit", function (e) {
+    //create and save new project
+    formProjectEl.addEventListener("submit", function (e) {
       e.preventDefault();
       //get form input project object and save on projects[]
       projects.push(createProjectObject());
@@ -76,6 +71,11 @@ const APP = (function () {
       toggleWindow("project");
     });
 
+    //Project detail functionality
+    btnNewTask();
+
+    //create and save task
+
     //render project detail
     window.addEventListener("hashchange", function () {
       console.log("hola");
@@ -90,12 +90,11 @@ const APP = (function () {
   const init = function () {
     //load local storage
     getLocalStorage();
+    renderList();
     console.log(projects);
 
     //add events listeners
     addListeners();
-
-    //FIX: poner cada enevet listener aca pero adentro de cada llamr a una funcion definida en funciones, por ejemplo renderProyectList, o createNewProyect
   };
 
   init(); //ver donde poner esto. esta va al final para ejecutar espues de leer todo

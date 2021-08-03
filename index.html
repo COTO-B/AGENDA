@@ -33,7 +33,7 @@
           </svg>
         </button>
 
-        <button type="button" class="btn btn--big nav__btn--add-project">
+        <button type="button" class="btn btn--big nav__btn--new-project">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
@@ -78,7 +78,7 @@
           itaque.
         </p>
 
-        <!--REVIEW:poner svg de circulo con check cuando hago click. REvisar como sacar y poner el check con js, poner y sacar clase?. Si no pongo fecha sacar el boton. en project task list poner scroll para que el boton add siempre este visible-->
+        <!--REVIEW:poner svg de circulo con check cuando hago click y hover. Si no pongo fecha sacar el boton. -->
         <ul class="project__task-list">
           <li class="project__task">
             <div class="project__task-header">
@@ -113,6 +113,7 @@
             </div>
 
             <!--cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada-->
+            <h3 class="project__task-name">titulo task 1</h3>
             <p class="project__task-description">
               task 1 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Minima laudantium ipsa ducimus possimus accusantium fugiat
@@ -144,18 +145,12 @@
                 <span>Jul 1</span>
               </button>
             </div>
-
+            <h3 class="project__task-name">titulo task 2</h3>
             <p class="project__task-description">task 21111111</p>
           </li>
-
-          <li class="project__task">plan the project</li>
-          <li class="project__task">plan the project</li>
-          <li class="project__task">plan the project</li>
-          <li class="project__task">plan the project</li>
-          <li class="project__task">plan the project</li>
         </ul>
 
-        <button type="button" class="btn btn--big project__btn--add-task">
+        <button type="button" class="btn btn--big project__btn--new-task">
           <svg>
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
@@ -170,16 +165,15 @@
     <div class="overlay hidden"></div>
     <div class="add-project-window hidden">
       <button type="button" class="btn--close-project-window">&times;</button>
-      <!--poner name color(hacer paleta de colores) y description, REVIEW:saca value es solo para desarrollo. revisar si puedo ocupar un boton para submit o mejor ocupar input type submit. EN JS transformar la data de la for y dejarla como array (formData API) -->
 
       <form class="upload">
-        <label class="upload__name" for="name">Name</label>
+        <label class="upload__name" for="project-name">Name</label>
         <input
           class="upload__input upload__input-name"
           value="test"
           required
           maxlength="10"
-          id="name"
+          id="project-name"
           name="project-name"
           type="text"
         />
@@ -267,12 +261,14 @@
           </ul>
         </div>
 
-        <label class="upload__description" for="description">Description</label>
+        <label class="upload__label-description" for="project-description"
+          >Description</label
+        >
         <textarea
           class="upload__input upload__input-description"
           required
           maxlength="150"
-          id="description"
+          id="project-description"
           name="project-description"
           wrap="hard"
         >
@@ -284,6 +280,55 @@
             <use href="src/img/icons.svg#icon-add-outline"></use>
           </svg>
           <span>Add project</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="overlay-task hidden"></div>
+    <div class="add-task-window hidden">
+      <button type="button" class="btn--close-task-window">&times;</button>
+
+      <form class="upload-task">
+        <label class="upload-task__label-description" for="task-calendar"
+          >Schedule</label
+        >
+        <button type="button" class="upload-task__input btn--open-calendar">
+          <svg>
+            <use href="src/img/icons.svg#icon-calendar"></use>
+          </svg>
+          <span>Calendar</span>
+        </button>
+
+        <label class="upload-task__name" for="task-name">Name</label>
+        <input
+          class="upload-task__input upload-task__input-name"
+          value="test"
+          required
+          maxlength="10"
+          id="task-name"
+          name="task-name"
+          type="text"
+        />
+
+        <label class="upload-task__label-description" for="task-description"
+          >Description</label
+        >
+        <textarea
+          class="upload-task__input upload-task__input-description"
+          required
+          maxlength="30"
+          id="task-description"
+          name="task-description"
+          wrap="hard"
+        >
+Lorem, ipsum dolor sit amet       consectetur adipisicing elit. Totam incidunt hic accusantium quisquam, illum omnis! Ipsa eveniet officia, quibusdam eius voluptatibus asperiores dolorum delectus ut atque consequatur nulla qui est!
+        </textarea>
+
+        <button type="submit" class="btn btn--big upload-task__btn--add-task">
+          <svg>
+            <use href="src/img/icons.svg#icon-add-outline"></use>
+          </svg>
+          <span>Add task</span>
         </button>
       </form>
     </div>

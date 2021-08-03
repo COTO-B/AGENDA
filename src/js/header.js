@@ -1,10 +1,11 @@
-//REVIEW:NEW PROJECT BTN----------------------------------------------------
-import { toggleWindow, generateProjectId, overlay } from "./helpers";
+import { toggleWindow, generateId, overlay } from "./helpers";
 
+export const formProjectEl = document.querySelector(".upload");
+
+//Project form functionality
 export const btnNewProject = function () {
-  ///REVIEW: open close funcionalidad
   //NOTE:VARIABLES
-  const btnNewProjectOpen = document.querySelector(".nav__btn--add-project");
+  const btnNewProjectOpen = document.querySelector(".nav__btn--new-project");
 
   const btnShowColor = document.querySelector(".color__btn-dropdown");
 
@@ -14,25 +15,26 @@ export const btnNewProject = function () {
   const btnColorDropdown = document.querySelector(".color__btn-dropdown");
   const colorsContainer = document.querySelector(".color__list");
 
+  //NOTE: FUNCTIONS
   //open project window and reset form to default
   btnNewProjectOpen.addEventListener("click", function () {
-    //FIX: estoy repitiendo formEl, ver si exportar a app. talvez mover a variables
-    const formEl = document.querySelector(".upload");
-
     btnShowColor.innerHTML = "";
     const defaultMarkup = `<span class="color__item-circle color__item-circle--selected color__item-circle--9" data-color="9"></span>
-  <span>Electric Blue</span>`;
+    <span>Electric Blue</span>`;
 
     btnShowColor.insertAdjacentHTML("afterbegin", defaultMarkup);
 
-    formEl.reset();
+    formProjectEl.reset();
 
     toggleWindow("project");
-  });
-  ///REVIEW: FIN open close funcionalidad
 
-  ////REVIEW: close funcionalidad
-  //close when click on button or outside of window project. poner las dos en una formula
+    //focus. FIX:buscar otro metodo
+    setTimeout(function () {
+      document.querySelector(".upload__input-name").focus();
+    }, 100);
+  });
+
+  // close functionality
   btnNewProjectClose.addEventListener("click", function () {
     toggleWindow("project");
   });
@@ -41,9 +43,7 @@ export const btnNewProject = function () {
     toggleWindow("project");
   });
 
-  ////REVIEW: FIN close funcionalidad
-  //////REVIEW:color funcionalidad
-  //color dropdown
+  //color dropdown toggle window
   btnColorDropdown.addEventListener("click", function (e) {
     e.preventDefault();
     //toggle hidden
@@ -52,7 +52,7 @@ export const btnNewProject = function () {
 
   //TODO:ver si añadir seleccion con el teclado.salir cuando hago click afuera del dropdown de los colores
 
-  //save and show selected color
+  //show selected color
   colorsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".color__item");
 
@@ -72,18 +72,10 @@ export const btnNewProject = function () {
     //toggle hidden
     colorsContainer.classList.toggle("hidden");
   });
-
-  //////REVIEW: FIN color funcionalidad
 };
 
-//FIN BTN NEW PROJECT------------------------
-
-//REVIEW: FORM-----------------------
-
+//create project
 export const createProjectObject = function () {
-  //leer la form y guardar en local storage
-
-  //NOTE: VARIABLES. ver si dejar esto mas reducido las const
   const inputProjectName = document.querySelector(".upload__input-name").value;
   const inputProjectColor = document.querySelector(
     ".color__item-circle--selected"
@@ -93,7 +85,7 @@ export const createProjectObject = function () {
   ).value;
 
   return {
-    projectId: generateProjectId(),
+    projectId: generateId("project"),
     projectName: `${inputProjectName}`,
     projectColor: `${inputProjectColor}`,
     projectDescription: `${inputProjectDescription}`,
