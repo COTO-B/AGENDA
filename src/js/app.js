@@ -14,16 +14,39 @@ import { btnNewProject, createProjectObject, formProjectEl } from "./header";
 import createProjectMarkup from "./projectList";
 import { toggleWindow } from "./helpers";
 import { btnNewTask } from "./projectDetail";
+import {
+  createTaskObject,
+  formTaskEl,
+  createProjectHeadMarkup,
+  createProjectTaskMarkup,
+} from "./projectDetail";
 
 // IFFI. ver si ocupar iifi o no
 const APP = (function () {
   //NOTE:VARIABLES--------------
 
   const projectList = document.querySelector(".list");
+  const projectHeadEl = document.querySelector(".project__head");
+  const projectTaskEl = document.querySelector(".project__task-list");
   //save data
   let projects = [];
 
   //NOTE:FUNCTIONS---------------------------
+
+  //FIX:quede aca revisar para que cuando no existe la pagina (hash) salir de la funcion o definir el actieprojectobject como otra cosa.
+  //con return se ejecuta la funcion revisar esto
+
+  const activeProject = function () {
+    const id = +window.location.hash.slice(1);
+
+    console.log(id);
+    const activeProjectObject = projects.find((proj) => proj.projectId === id);
+
+    return activeProjectObject;
+  };
+
+  console.log(activeProject());
+
   const renderList = function () {
     projectList.innerHTML = "";
     projects.forEach((project) => {
@@ -35,6 +58,24 @@ const APP = (function () {
   };
 
   //render project detail
+  const renderProjectDetail = function (project) {
+    //aca borro todo por eso no encuentra el ul parece
+    projectHeadEl.innerHTML = "";
+    projectHeadEl.insertAdjacentHTML(
+      "afterbegin",
+      createProjectHeadMarkup(project)
+    );
+
+    projectTaskEl.innerHTML = "";
+    console.log(project.projectTask);
+    project.projectTask.forEach((taskObject) => {
+      projectTaskEl.insertAdjacentHTML(
+        "afterbegin",
+        createProjectTaskMarkup(taskObject)
+      );
+    });
+  };
+
   const getLocalStorage = function () {
     const data = JSON.parse(localStorage.getItem("projects"));
     if (!data) return;
@@ -75,14 +116,26 @@ const APP = (function () {
     btnNewTask();
 
     //create and save task
+    formTaskEl.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    //render project detail
+      //select active project and save data
+      activeProject().projectTask.push(createTaskObject());
+      console.log(activeProject().projectTask);
+      setLocalStorage(projects);
+      console.log(projects);
+
+      //render project detail
+      renderProjectDetail(activeProject());
+
+      //close window
+      toggleWindow("task");
+    });
+
+    //render project
     window.addEventListener("hashchange", function () {
-      console.log("hola");
-
       renderList();
-
-      //TODO: Render project detail
+      renderProjectDetail(activeProject());
     });
   };
 
@@ -91,6 +144,8 @@ const APP = (function () {
     //load local storage
     getLocalStorage();
     renderList();
+    //render project detail
+    renderProjectDetail(activeProject());
     console.log(projects);
 
     //add events listeners
