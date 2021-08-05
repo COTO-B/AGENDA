@@ -13,7 +13,7 @@
   padding: 0.7rem 0.85rem;
   border-radius: 10rem;
 
-  transition: all 0.4s;
+  transition: background-color 0.4s;
 
   svg {
     fill: var(--color-primary-1);
@@ -22,6 +22,7 @@
   &:hover,
   &:active {
     background-color: var(--color-secondary-1);
+    outline: none;
   }
 
   & span {

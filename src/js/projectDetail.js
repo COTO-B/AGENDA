@@ -3,12 +3,10 @@ import icons from "../img/icons.svg";
 
 export const formTaskEl = document.querySelector(".upload-task");
 
+export const btnNewTaskOpen = document.querySelector(".project__btn--new-task");
+
 export const btnNewTask = function () {
   //NOTE:VARIABLES
-
-  const formTaskEl = document.querySelector(".upload-task");
-
-  const btnNewTaskOpen = document.querySelector(".project__btn--new-task");
 
   const btnNewTaskClose = document.querySelector(".btn--close-task-window");
 
@@ -48,11 +46,6 @@ export const createTaskObject = function () {
 };
 
 export const createProjectHeadMarkup = function (projectObject) {
-  // if (projectObject === undefined) {
-  //   console.log("es vacio");
-  //   return;
-  // }
-
   const Markup = `
     <h2 class="project__name">${projectObject.projectName}</h2>
 
@@ -99,6 +92,20 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
       ${projectTaskObject.taskDescription}
     </p>
   </li>
+  `;
+
+  return Markup;
+};
+
+export const createProjectBtnTaskMarkup = function () {
+  const Markup = `
+  <button type="button" class="btn btn--big project__btn--new-task">
+    <svg>
+      <use href="${icons}#icon-add-outline"></use>
+    </svg>
+    <span>Add task</span>
+  </button>
+  
   `;
 
   return Markup;

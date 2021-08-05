@@ -5,6 +5,7 @@ const createProjectMarkup = function (projectObject) {
   //NOTE:VARIABLES
 
   const id = +window.location.hash.slice(1);
+  //ver si poner guard clause
 
   //haciendo el markup
   const markup = `

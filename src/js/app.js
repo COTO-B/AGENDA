@@ -19,6 +19,8 @@ import {
   formTaskEl,
   createProjectHeadMarkup,
   createProjectTaskMarkup,
+  createProjectBtnTaskMarkup,
+  btnNewTaskOpen,
 } from "./projectDetail";
 
 // IFFI. ver si ocupar iifi o no
@@ -26,7 +28,9 @@ const APP = (function () {
   //NOTE:VARIABLES--------------
 
   const projectList = document.querySelector(".list");
+
   const projectHeadEl = document.querySelector(".project__head");
+
   const projectTaskEl = document.querySelector(".project__task-list");
   //save data
   let projects = [];
@@ -39,13 +43,10 @@ const APP = (function () {
   const activeProject = function () {
     const id = +window.location.hash.slice(1);
 
-    console.log(id);
     const activeProjectObject = projects.find((proj) => proj.projectId === id);
 
     return activeProjectObject;
   };
-
-  console.log(activeProject());
 
   const renderList = function () {
     projectList.innerHTML = "";
@@ -57,15 +58,35 @@ const APP = (function () {
     });
   };
 
+  const initialMessage = function () {
+    const Markup = `
+    <div class="message" >Hello, to start try creating a new project!!!</div>
+    `;
+
+    return Markup;
+  };
+
   //render project detail
   const renderProjectDetail = function (project) {
-    //aca borro todo por eso no encuentra el ul parece
+    //no project found
+    if (!project) {
+      projectHeadEl.innerHTML = "";
+      projectHeadEl.insertAdjacentHTML("afterbegin", initialMessage());
+
+      projectTaskEl.innerHTML = "";
+      // btnNewTaskOpen.style.transition("none");
+      btnNewTaskOpen.classList.add("hidden");
+      return;
+    }
+
+    //render head
     projectHeadEl.innerHTML = "";
     projectHeadEl.insertAdjacentHTML(
       "afterbegin",
       createProjectHeadMarkup(project)
     );
 
+    //render detail
     projectTaskEl.innerHTML = "";
     console.log(project.projectTask);
     project.projectTask.forEach((taskObject) => {
@@ -74,6 +95,13 @@ const APP = (function () {
         createProjectTaskMarkup(taskObject)
       );
     });
+
+    btnNewTaskOpen.classList.remove("hidden");
+
+    // projectDetailEl.insertAdjacentHTML(
+    //   "beforeend",
+    //   createProjectBtnTaskMarkup()
+    // );
   };
 
   const getLocalStorage = function () {
@@ -144,6 +172,9 @@ const APP = (function () {
     //load local storage
     getLocalStorage();
     renderList();
+
+    console.log(activeProject());
+
     //render project detail
     renderProjectDetail(activeProject());
     console.log(projects);

@@ -70,6 +70,33 @@
       </p>
 
       <section class="project">
+        <!--REVIEW:poner svg de circulo con check cuando hago click y hover. Si no pongo fecha sacar el boton.
+        
+        cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada
+
+        FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha
+
+        poner hover efect en botones, en el circulo poner circulo verde check con js los otros dos cambiar de colo no mas-->
+
+
+        
+        <div class="project__head">
+          
+          <div class="message" >Hello, to start try creating a new project!!!</div>
+
+        </div>
+
+        <div class="project__detail">
+          <ul class="project__task-list"></ul>
+
+          <button type="button" class="btn btn--big project__btn--new-task">
+            <svg>
+              <use href="src/img/icons.svg#icon-add-outline"></use>
+            </svg>
+            <span>Add task</span>
+          </button>
+      </div>
+<!--
         <div class="project__head">
           <h2 class="project__name">Project 1</h2>
 
@@ -79,7 +106,7 @@
             voluptas itaque.
           </p>
         </div>
-        <!--REVIEW:poner svg de circulo con check cuando hago click y hover. Si no pongo fecha sacar el boton. -->
+
         <ul class="project__task-list">
           <li class="project__task">
             <div class="project__task-header">
@@ -101,7 +128,6 @@
                 </svg>
               </button>
 
-              <!--FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha-->
               <button
                 type="button"
                 class="btn btn--small project__btn project__btn-date"
@@ -113,7 +139,6 @@
               </button>
             </div>
 
-            <!--cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada-->
             <h3 class="project__task-name">titulo task 1</h3>
             <p class="project__task-description">
               task 1 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -124,7 +149,6 @@
           </li>
 
           <li class="project__task">
-            <!--poner hover efect en botones, en el circulo poner circulo verde check con js los otros dos cambiar de colo no mas-->
             <div class="project__task-header">
               <button class="btn btn--small project__btn project__btn-check">
                 <svg>
@@ -138,7 +162,6 @@
                 </svg>
               </button>
 
-              <!--FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha-->
               <button class="btn btn--small project__btn project__btn-date">
                 <svg>
                   <use href="src/img/icons.svg#icon-calendar"></use>
@@ -159,6 +182,8 @@
         </button>
       </section>
     </div>
+
+    -->
     <!--fin container-->
 
     <!--ventanas botones-->
