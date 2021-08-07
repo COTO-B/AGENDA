@@ -21,6 +21,8 @@ import {
   createProjectTaskMarkup,
   createProjectBtnTaskMarkup,
   btnNewTaskOpen,
+  initialMessage,
+  taskChekBtn,
 } from "./projectDetail";
 
 // IFFI. ver si ocupar iifi o no
@@ -58,14 +60,6 @@ const APP = (function () {
     });
   };
 
-  const initialMessage = function () {
-    const Markup = `
-    <div class="message" >Hello, to start try creating a new project!!!</div>
-    `;
-
-    return Markup;
-  };
-
   //render project detail
   const renderProjectDetail = function (project) {
     //no project found
@@ -74,7 +68,6 @@ const APP = (function () {
       projectHeadEl.insertAdjacentHTML("afterbegin", initialMessage());
 
       projectTaskEl.innerHTML = "";
-      // btnNewTaskOpen.style.transition("none");
       btnNewTaskOpen.classList.add("hidden");
       return;
     }
@@ -86,7 +79,7 @@ const APP = (function () {
       createProjectHeadMarkup(project)
     );
 
-    //render detail
+    //render tasks
     projectTaskEl.innerHTML = "";
     console.log(project.projectTask);
     project.projectTask.forEach((taskObject) => {
@@ -96,12 +89,8 @@ const APP = (function () {
       );
     });
 
+    //render btn
     btnNewTaskOpen.classList.remove("hidden");
-
-    // projectDetailEl.insertAdjacentHTML(
-    //   "beforeend",
-    //   createProjectBtnTaskMarkup()
-    // );
   };
 
   const getLocalStorage = function () {
@@ -116,9 +105,9 @@ const APP = (function () {
   };
 
   //NOTE:EVENTS.
-  //FIX: si guardo en projetcs dejar aca todo el resto va en sus modulos y solo llamo a la funcion como ej project form functionality
+  //FIX: si guardo en projetcs dejar aca todo, el resto va en sus modulos y solo llamo a la funcion como ej project form functionality
   const addListeners = function () {
-    //Project form functionality
+    //New project form functionality
     btnNewProject();
 
     //create and save new project
@@ -140,7 +129,7 @@ const APP = (function () {
       toggleWindow("project");
     });
 
-    //Project detail functionality
+    //Project new task btn functionality
     btnNewTask();
 
     //create and save task
@@ -165,6 +154,9 @@ const APP = (function () {
       renderList();
       renderProjectDetail(activeProject());
     });
+
+    //Project task head btns functionality
+    taskChekBtn();
   };
 
   //NOTE: INIT-------------------------------
@@ -175,7 +167,7 @@ const APP = (function () {
 
     console.log(activeProject());
 
-    //render project detail
+    //render active project detail
     renderProjectDetail(activeProject());
     console.log(projects);
 

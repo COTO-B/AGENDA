@@ -58,4 +58,17 @@
       color: var(--color-primary-3);
     }
   }
+
+  &__head--message {
+    display: flex;
+    align-items: center;
+
+    & svg {
+      height: 2rem;
+      width: 2rem;
+
+      margin-right: 1rem;
+      fill: var(--color-secondary-1);
+    }
+  }
 }

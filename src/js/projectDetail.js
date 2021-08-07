@@ -12,7 +12,7 @@ export const btnNewTask = function () {
 
   //NOTE: FUNCTIONS
 
-  //open and rest form
+  //open and reset form
   btnNewTaskOpen.addEventListener("click", function () {
     toggleWindow("task");
     formTaskEl.reset();
@@ -62,7 +62,7 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
     <div class="project__task-header">
       <button
         type="button"
-        class="btn btn--small project__btn project__btn-circule">
+        class="btn btn--small project__btn project__btn-circle">
         <svg>
           <use href="${icons}#icon-circle1"></use>
         </svg>
@@ -104,9 +104,35 @@ export const createProjectBtnTaskMarkup = function () {
       <use href="${icons}#icon-add-outline"></use>
     </svg>
     <span>Add task</span>
-  </button>
-  
+  </button>  
   `;
 
   return Markup;
+};
+
+export const initialMessage = function () {
+  const Markup = `
+  <div class="project__head--message">
+    <svg>
+      <use href="${icons}#icon-mood-happy-outline"></use>
+    </svg>
+    <h2>Hello, to start try creating a new project!!!</h2>
+  </div>
+  `;
+
+  return Markup;
+};
+
+export const taskChekBtn = function () {
+  //FIX: ACA QUEDE. poner mas de un event listener pero separados hover cambiar svg y color. click mantener el svg y color cambiado. href set attribute
+
+  const TaskHeadBtns = document.querySelector(".project__task-header");
+
+  TaskHeadBtns.addEventListener("click", function (e) {
+    const circleBtn = e.target.closest(".project__btn-circle");
+    //poner clase al use para seleccionarlo o ver otra forma de navegar por el dom
+    console.log(circleBtn);
+    console.log(circleBtn.children);
+    console.log(circleBtn.childNodes);
+  });
 };
