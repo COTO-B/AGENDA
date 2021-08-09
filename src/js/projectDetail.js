@@ -57,20 +57,29 @@ export const createProjectHeadMarkup = function (projectObject) {
 };
 
 export const createProjectTaskMarkup = function (projectTaskObject) {
+  //FIX:quede aca ver si sacar el segundo svg que esta hidden
+  //   <svg class = "hidden">
+  //   <use href="${icons}#icon-checkmark-outline"></use>
+  // </svg>
+
   const Markup = `
   <li class="project__task">
     <div class="project__task-header">
+      
       <button
         type="button"
-        class="btn btn--small project__btn project__btn-circle">
+        class="btn btn--small project__btn project__btn-icon project__btn-circle">
+      
         <svg>
           <use href="${icons}#icon-circle1"></use>
         </svg>
+      
+        
       </button>
 
       <button
         type="button"
-        class="btn btn--small project__btn project__btn-delete">
+        class="btn btn--small project__btn project__btn-icon project__btn-delete">
         <svg>
           <use href="${icons}#icon-trash"></use>
         </svg>
@@ -78,7 +87,7 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
 
       <button
         type="button"
-        class="btn btn--small project__btn project__btn-date">
+        class="btn btn--small project__btn project__btn-icon project__btn-date">
         <svg>
           <use href="${icons}#icon-calendar"></use>
         </svg>
@@ -124,15 +133,34 @@ export const initialMessage = function () {
 };
 
 export const taskChekBtn = function () {
-  //FIX: ACA QUEDE. poner mas de un event listener pero separados hover cambiar svg y color. click mantener el svg y color cambiado. href set attribute
+  //FIX: ACA QUEDE. poner mas de un event listener pero separados hover cambiar svg y color. click mantener el svg y color cambiado. href set attribute. poner if para no cambiar todos solo el que quiero, el deleate y calendar cambiar con hover en css
 
   const TaskHeadBtns = document.querySelector(".project__task-header");
 
-  TaskHeadBtns.addEventListener("click", function (e) {
-    const circleBtn = e.target.closest(".project__btn-circle");
+  TaskHeadBtns.addEventListener("mouseover", function (e) {
+    const circleBtn = e.target.closest(".project__btn-icon");
     //poner clase al use para seleccionarlo o ver otra forma de navegar por el dom
     console.log(circleBtn);
     console.log(circleBtn.children);
     console.log(circleBtn.childNodes);
+
+    const svg = circleBtn.children[0].children[0];
+
+    svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
+
+    svg.style.fill = "#18df06";
+    console.log(svg);
+  });
+
+  //FIX: arreglar esto no gunca
+  TaskHeadBtns.addEventListener("mouseout", function (e) {
+    const circleBtn = e.target.closest(".project__btn-icon");
+
+    const svg = circleBtn.children[0].children[0];
+
+    svg.setAttribute("href", `${icons}##icon-circle1`);
+
+    svg.style.fill = "#999";
+    console.log(svg);
   });
 };
