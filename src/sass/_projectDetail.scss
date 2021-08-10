@@ -44,18 +44,34 @@
   &__btn {
     font-size: 1.2rem;
     fill: var(--color-grey-dark-1);
+    transition: all 0.2s;
 
     &:not(:last-child) {
       margin-right: 10px;
     }
 
-    &-check {
-      fill: var(--color-green-check);
+    &-circle {
+      &:hover {
+        fill: var(--color-green-check);
+      }
+
+      &--active {
+        fill: var(--color-green-check);
+      }
+    }
+
+    &-delete:hover {
+      fill: var(--color-grey-dark-2);
     }
 
     &-date {
       fill: var(--color-primary-3);
       color: var(--color-primary-3);
+
+      &:hover {
+        fill: var(--color-picker-10);
+        color: var(--color-picker-10);
+      }
     }
   }
 

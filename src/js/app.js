@@ -22,7 +22,7 @@ import {
   createProjectBtnTaskMarkup,
   btnNewTaskOpen,
   initialMessage,
-  taskChekBtn,
+  taskHeadBtns,
 } from "./projectDetail";
 
 // IFFI. ver si ocupar iifi o no
@@ -153,10 +153,12 @@ const APP = (function () {
     window.addEventListener("hashchange", function () {
       renderList();
       renderProjectDetail(activeProject());
+      //funcionalidad de los btns task
+      taskHeadBtns();
     });
 
     //Project task head btns functionality
-    taskChekBtn();
+    taskHeadBtns();
   };
 
   //NOTE: INIT-------------------------------

@@ -57,11 +57,6 @@ export const createProjectHeadMarkup = function (projectObject) {
 };
 
 export const createProjectTaskMarkup = function (projectTaskObject) {
-  //FIX:quede aca ver si sacar el segundo svg que esta hidden
-  //   <svg class = "hidden">
-  //   <use href="${icons}#icon-checkmark-outline"></use>
-  // </svg>
-
   const Markup = `
   <li class="project__task">
     <div class="project__task-header">
@@ -71,7 +66,7 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
         class="btn btn--small project__btn project__btn-icon project__btn-circle">
       
         <svg>
-          <use href="${icons}#icon-circle1"></use>
+          <use data-icon="circle" href="${icons}#icon-circle1"></use>
         </svg>
       
         
@@ -81,7 +76,7 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
         type="button"
         class="btn btn--small project__btn project__btn-icon project__btn-delete">
         <svg>
-          <use href="${icons}#icon-trash"></use>
+          <use data-icon="delete" href="${icons}#icon-trash"></use>
         </svg>
       </button>
 
@@ -89,7 +84,7 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
         type="button"
         class="btn btn--small project__btn project__btn-icon project__btn-date">
         <svg>
-          <use href="${icons}#icon-calendar"></use>
+          <use data-icon="calendar" href="${icons}#icon-calendar"></use>
         </svg>
         <span>Jul 1</span>
       </button>
@@ -132,35 +127,67 @@ export const initialMessage = function () {
   return Markup;
 };
 
-export const taskChekBtn = function () {
-  //FIX: ACA QUEDE. poner mas de un event listener pero separados hover cambiar svg y color. click mantener el svg y color cambiado. href set attribute. poner if para no cambiar todos solo el que quiero, el deleate y calendar cambiar con hover en css
+//FIX: ACA ESTOY
+//TODO: guardar estado del check en array de task agregar una propiedad llamada state que puede ser compleated o pending
+//TODO: borrar el task cuando apreto delete
+//TODO: ver como funciona el calendario.
+//TODO: OK: con hash change tb correr este nuevamente.
+//TODO:dejar lo de adentro del events listener de mouse in y out en una misma funcion el codigo es parecido
 
-  const TaskHeadBtns = document.querySelector(".project__task-header");
+export const taskHeadBtns = function () {
+  const taskHead = document.querySelectorAll(".project__task-header");
 
-  TaskHeadBtns.addEventListener("mouseover", function (e) {
-    const circleBtn = e.target.closest(".project__btn-icon");
-    //poner clase al use para seleccionarlo o ver otra forma de navegar por el dom
-    console.log(circleBtn);
-    console.log(circleBtn.children);
-    console.log(circleBtn.childNodes);
+  console.log(taskHead);
+  console.log(taskHead.length);
 
-    const svg = circleBtn.children[0].children[0];
+  //TODO:poner un for para los 3 events
 
-    svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
+  taskHead.forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      const taskIconBtn = e.target.closest(".project__btn-icon");
 
-    svg.style.fill = "#18df06";
-    console.log(svg);
+      if (!taskIconBtn) return;
+
+      const svg = taskIconBtn.children[0].children[0];
+
+      if (svg.dataset.icon === "circle") {
+        if (taskIconBtn.classList.contains("project__btn-circle--active")) {
+          svg.setAttribute("href", `${icons}#icon-circle1`);
+        } else {
+          svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
+        }
+
+        taskIconBtn.classList.toggle("project__btn-circle--active");
+      }
+
+      //TODO:aca guardar la data de check task en array  o ver como guardaarla en app.js
+    });
   });
+  // taskHead.addEventListener("mouseover", function (e) {
+  //   const taskIconBtn = e.target.closest(".project__btn-icon");
 
-  //FIX: arreglar esto no gunca
-  TaskHeadBtns.addEventListener("mouseout", function (e) {
-    const circleBtn = e.target.closest(".project__btn-icon");
+  //   if (!taskIconBtn) return;
 
-    const svg = circleBtn.children[0].children[0];
+  //   const svg = taskIconBtn.children[0].children[0];
 
-    svg.setAttribute("href", `${icons}##icon-circle1`);
+  //   if (svg.dataset.icon === "circle") {
+  //     svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
 
-    svg.style.fill = "#999";
-    console.log(svg);
-  });
+  //     taskIconBtn.classList.add("project__btn-circle--active");
+  //   }
+  // });
+
+  // taskHead.addEventListener("mouseout", function (e) {
+  //   const taskIconBtn = e.target.closest(".project__btn-icon");
+
+  //   if (!taskIconBtn) return;
+
+  //   const svg = taskIconBtn.children[0].children[0];
+
+  //   if (svg.dataset.icon === "circle") {
+  //     svg.setAttribute("href", `${icons}#icon-circle1`);
+
+  //     taskIconBtn.classList.remove("project__btn-circle--active");
+  //   }
+  // });
 };
