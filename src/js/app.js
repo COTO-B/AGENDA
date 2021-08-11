@@ -86,6 +86,7 @@ const APP = (function () {
       projectTaskEl.insertAdjacentHTML(
         "afterbegin",
         createProjectTaskMarkup(taskObject)
+        //TODO://poner check si es true a cada task, crear funcion
       );
     });
 
@@ -149,7 +150,7 @@ const APP = (function () {
       toggleWindow("task");
     });
 
-    //render project
+    //render project when changed
     window.addEventListener("hashchange", function () {
       renderList();
       renderProjectDetail(activeProject());

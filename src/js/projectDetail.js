@@ -12,7 +12,7 @@ export const btnNewTask = function () {
 
   //NOTE: FUNCTIONS
 
-  //open and reset form
+  //open and reset add task form
   btnNewTaskOpen.addEventListener("click", function () {
     toggleWindow("task");
     formTaskEl.reset();
@@ -42,6 +42,7 @@ export const createTaskObject = function () {
     taskId: generateId("task"),
     taskName: `${inputTaskName}`,
     taskDescription: `${inputTaskDescription}`,
+    taskCheck: false,
   };
 };
 
@@ -59,7 +60,7 @@ export const createProjectHeadMarkup = function (projectObject) {
 export const createProjectTaskMarkup = function (projectTaskObject) {
   const Markup = `
   <li class="project__task">
-    <div class="project__task-header">
+    <div class="project__task-header" data-taskid="${projectTaskObject.taskId}">
       
       <button
         type="button"
@@ -127,7 +128,7 @@ export const initialMessage = function () {
   return Markup;
 };
 
-//FIX: ACA ESTOY
+//FIX:
 //TODO: guardar estado del check en array de task agregar una propiedad llamada state que puede ser compleated o pending
 //TODO: borrar el task cuando apreto delete
 //TODO: ver como funciona el calendario.
@@ -140,29 +141,52 @@ export const taskHeadBtns = function () {
   console.log(taskHead);
   console.log(taskHead.length);
 
-  //TODO:poner un for para los 3 events
-
   taskHead.forEach(function (el) {
     el.addEventListener("click", function (e) {
       const taskIconBtn = e.target.closest(".project__btn-icon");
 
       if (!taskIconBtn) return;
 
+      const taskId = taskIconBtn.parentElement.dataset.taskid;
+      console.log(taskId);
+      //poner taskId = . obtener id del dataset. esta en el padre de taskiconbtn
       const svg = taskIconBtn.children[0].children[0];
 
       if (svg.dataset.icon === "circle") {
+        let taskCheck;
+
         if (taskIconBtn.classList.contains("project__btn-circle--active")) {
           svg.setAttribute("href", `${icons}#icon-circle1`);
+          //TODO:borrar active en el objeto .
+          taskCheck = false;
         } else {
           svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
+          //TODO:agregar active en el objeto.
+          taskCheck = true;
         }
 
         taskIconBtn.classList.toggle("project__btn-circle--active");
+        //poner retur del id y task-check ???
+        //FIX:quede aca return solo taskcheck ver si poner toda esta funcion afuera y llamarla para almaenar el return en una variable. ver como guardar taskchek en el objeto
+        return console.log(taskId, taskCheck);
       }
+
+      console.log(taskId, taskCheck);
+
+      //TODO: if dataset= delete aplicar funcion para borrar
+
+      //TODO: if dataset = calendar ver como llamar al calendar
 
       //TODO:aca guardar la data de check task en array  o ver como guardaarla en app.js
     });
   });
+
+  //
+
+  //
+
+  //
+
   // taskHead.addEventListener("mouseover", function (e) {
   //   const taskIconBtn = e.target.closest(".project__btn-icon");
 
