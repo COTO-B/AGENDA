@@ -22,8 +22,9 @@ import {
   createProjectBtnTaskMarkup,
   btnNewTaskOpen,
   initialMessage,
-  taskHeadBtns,
 } from "./projectDetail";
+
+//FIX: ver si poner el update para actualisar solo lo que cambia del dom
 
 // IFFI. ver si ocupar iifi o no
 const APP = (function () {
@@ -92,6 +93,9 @@ const APP = (function () {
 
     //render btn
     btnNewTaskOpen.classList.remove("hidden");
+
+    //FIX:load checked task.
+    //ver como poner circleBtnTaskToggle
   };
 
   const getLocalStorage = function () {
@@ -103,6 +107,72 @@ const APP = (function () {
   //dejar como modulo para project y task con input si es project o task. otra opcion es midificar let project y uadar todo nuevvamente
   const setLocalStorage = function (projects) {
     localStorage.setItem("projects", JSON.stringify(projects));
+  };
+
+  //task btns functionality circle function
+  const circleBtnTaskToggle = function (taskIconBtn, svg) {
+    let taskCheck;
+
+    if (taskIconBtn.classList.contains("project__btn-circle--active")) {
+      svg.setAttribute("href", `${icons}#icon-circle1`);
+      taskCheck = false;
+    } else {
+      svg.setAttribute("href", `${icons}#icon-checkmark-outline`);
+      taskCheck = true;
+    }
+
+    taskIconBtn.classList.toggle("project__btn-circle--active");
+
+    return taskCheck;
+  };
+
+  //FIX: QUEDE ACA. ver como render el task check en render proyect detail en create project task markup
+  //task btns functionality
+  const taskHeadBtns = function () {
+    const taskHeadEl = document.querySelectorAll(".project__task-header");
+    // console.log(taskHeadEl); for each node list contain task icon btns
+    taskHeadEl.forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        const taskIconBtn = e.target.closest(".project__btn-icon");
+
+        if (!taskIconBtn) return;
+
+        let taskCheckState;
+        const activeTaskId = +taskIconBtn.parentElement.dataset.taskid;
+        const activeTask = activeProject().projectTask.find(
+          (t) => t.taskId === activeTaskId
+        );
+        const svg = taskIconBtn.children[0].children[0];
+
+        console.log(el);
+        console.log(el.parentElement);
+        console.log(+el.dataset.taskid);
+        console.log(activeProject());
+        console.log(activeTaskId);
+        console.log(activeTask);
+
+        if (svg.dataset.icon === "circle") {
+          taskCheckState = circleBtnTaskToggle(taskIconBtn, svg);
+
+          activeTask.taskCheck = taskCheckState;
+        }
+
+        if (svg.dataset.icon === "delete") {
+          console.log("borrar");
+          const indexActiveTask =
+            activeProject().projectTask.indexOf(activeTask);
+          //remove from object
+          activeProject().projectTask.splice(indexActiveTask, 1);
+          //remove from DOM
+          el.parentElement.remove();
+        }
+
+        if (svg.dataset.icon === "calendar") {
+          console.log("lanzar calendario");
+        }
+        setLocalStorage(projects);
+      });
+    });
   };
 
   //NOTE:EVENTS.
@@ -126,11 +196,11 @@ const APP = (function () {
       );
       //render project on list
       renderList();
-      // cerrar la ventana
+      // close window
       toggleWindow("project");
     });
 
-    //Project new task btn functionality
+    //Load Project new task btn functionality
     btnNewTask();
 
     //create and save task
@@ -148,17 +218,18 @@ const APP = (function () {
 
       //close window
       toggleWindow("task");
+      taskHeadBtns();
     });
 
     //render project when changed
     window.addEventListener("hashchange", function () {
       renderList();
       renderProjectDetail(activeProject());
-      //funcionalidad de los btns task
+      //FIX:Load Project task head btns functionality. nose si este debe ir ya que si pongo en el render detail para que muestre el check no deberia tener problema
       taskHeadBtns();
     });
 
-    //Project task head btns functionality
+    //Load Project task head btns functionality
     taskHeadBtns();
   };
 
