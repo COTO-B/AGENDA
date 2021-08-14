@@ -10,6 +10,8 @@
 import "core-js/stable";
 
 import icons from "../img/icons.svg";
+//calendar
+import flatpickr from "flatpickr";
 import { btnNewProject, createProjectObject, formProjectEl } from "./header";
 import createProjectMarkup from "./projectList";
 import { toggleWindow } from "./helpers";
@@ -41,7 +43,6 @@ const APP = (function () {
   //NOTE:FUNCTIONS---------------------------
 
   //FIX:quede aca revisar para que cuando no existe la pagina (hash) salir de la funcion o definir el actieprojectobject como otra cosa.
-  //con return se ejecuta la funcion revisar esto
 
   const activeProject = function () {
     const id = +window.location.hash.slice(1);
@@ -87,15 +88,11 @@ const APP = (function () {
       projectTaskEl.insertAdjacentHTML(
         "afterbegin",
         createProjectTaskMarkup(taskObject)
-        //TODO://poner check si es true a cada task, crear funcion
       );
     });
 
     //render btn
     btnNewTaskOpen.classList.remove("hidden");
-
-    //FIX:load checked task.
-    //ver como poner circleBtnTaskToggle
   };
 
   const getLocalStorage = function () {
@@ -126,7 +123,6 @@ const APP = (function () {
     return taskCheck;
   };
 
-  //FIX: QUEDE ACA. ver como render el task check en render proyect detail en create project task markup
   //task btns functionality
   const taskHeadBtns = function () {
     const taskHeadEl = document.querySelectorAll(".project__task-header");
@@ -144,13 +140,6 @@ const APP = (function () {
         );
         const svg = taskIconBtn.children[0].children[0];
 
-        console.log(el);
-        console.log(el.parentElement);
-        console.log(+el.dataset.taskid);
-        console.log(activeProject());
-        console.log(activeTaskId);
-        console.log(activeTask);
-
         if (svg.dataset.icon === "circle") {
           taskCheckState = circleBtnTaskToggle(taskIconBtn, svg);
 
@@ -158,7 +147,6 @@ const APP = (function () {
         }
 
         if (svg.dataset.icon === "delete") {
-          console.log("borrar");
           const indexActiveTask =
             activeProject().projectTask.indexOf(activeTask);
           //remove from object
@@ -196,6 +184,8 @@ const APP = (function () {
       );
       //render project on list
       renderList();
+      //render project detail
+      renderProjectDetail(activeProject());
       // close window
       toggleWindow("project");
     });
@@ -213,19 +203,38 @@ const APP = (function () {
       setLocalStorage(projects);
       console.log(projects);
 
+      //FIX:aca estoy, ver como poner calendario
+      //REVIEW: Si no pongo fecha sacar el boton.
       //render project detail
+      //FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha
       renderProjectDetail(activeProject());
-
       //close window
       toggleWindow("task");
+      //Load Project task head btns functionality
       taskHeadBtns();
+      //TODO:dspues de crear el task mover a la parte de arriba del project detail window para ver el task recien creado, esto pasa cuando hay muchas task, hacer TEST:
     });
+
+    //FIX:aca estoy, ver como poner calendario
+
+    //calendario en bton del add task
+    const inputTaskCalendar = document.querySelector(".btn--open-calendar");
+
+    // const inputTaskCalendar = document.querySelector(".project__btn-date");
+    flatpickr("#task-name", {});
+    inputTaskCalendar.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log(inputTaskCalendar);
+      flatpickr("#taskname", {});
+      console.log(flatpickr("#calendar", {}));
+    });
+    // --------------------calendario
 
     //render project when changed
     window.addEventListener("hashchange", function () {
       renderList();
       renderProjectDetail(activeProject());
-      //FIX:Load Project task head btns functionality. nose si este debe ir ya que si pongo en el render detail para que muestre el check no deberia tener problema
+      //Load Project task head btns functionalitya
       taskHeadBtns();
     });
 

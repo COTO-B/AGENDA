@@ -23,6 +23,7 @@
     "sass": "^1.35.1"
   },
   "dependencies": {
-    "core-js": "^3.15.2"
+    "core-js": "^3.15.2",
+    "flatpickr": "^4.6.9"
   }
 }

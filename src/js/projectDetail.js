@@ -1,6 +1,8 @@
 import { toggleWindow, generateId, overlayTask, taskWindow } from "./helpers";
 import icons from "../img/icons.svg";
 
+import flatpickr from "flatpickr";
+
 export const formTaskEl = document.querySelector(".upload-task");
 
 export const btnNewTaskOpen = document.querySelector(".project__btn--new-task");
@@ -16,6 +18,8 @@ export const btnNewTask = function () {
   btnNewTaskOpen.addEventListener("click", function () {
     toggleWindow("task");
     formTaskEl.reset();
+    //FIX:aca estoy, ver como poner calendario
+    flatpickr("#task-name", {});
   });
   //Close functionality
   overlayTask.addEventListener("click", function () {
@@ -37,6 +41,8 @@ export const createTaskObject = function () {
   const inputTaskDescription = document.querySelector(
     ".upload-task__input-description"
   ).value;
+
+  //FIX:aca estoy, ver como poner calendario
 
   return {
     taskId: generateId("task"),
@@ -62,15 +68,21 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
   <li class="project__task">
     <div class="project__task-header" data-taskid="${projectTaskObject.taskId}">
       
+
       <button
         type="button"
-        class="btn btn--small project__btn project__btn-icon project__btn-circle">
+        class="btn btn--small project__btn project__btn-icon project__btn-circle ${
+          projectTaskObject.taskCheck === true
+            ? "project__btn-circle--active"
+            : ""
+        }">
       
         <svg>
-          <use data-icon="circle" href="${icons}#icon-circle1"></use>
-        </svg>
-      
-        
+          <use data-icon="circle" href="${icons}#icon-${
+    projectTaskObject.taskCheck === true ? "checkmark-outline" : "circle1"
+  }">
+          </use>
+        </svg>  
       </button>
 
       <button

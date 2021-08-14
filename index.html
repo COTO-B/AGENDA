@@ -70,16 +70,7 @@
       </p>
 
       <section class="project">
-        <!--REVIEW:poner svg de circulo con check cuando hago click y hover. Si no pongo fecha sacar el boton.
-        
-        cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada
-
-        FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha
-
-        poner hover efect en botones, en el circulo poner circulo verde check con js los otros dos cambiar de colo no mas-->
-
-
-        
+        <!-- FIX: cuando click mandar a la ventana para editar todo, es el add buton pero con la info cargada-->        
         <div class="project__head">
           
           <div class="project__head--message">
@@ -325,7 +316,8 @@
         <label class="upload-task__label-description" for="task-calendar"
           >Schedule</label
         >
-        <button type="button" class="upload-task__input btn--open-calendar">
+        <button type="button" class="upload-task__input btn--open-calendar"
+        id="calendar"> <!--FIX:ver si sacar este id-->
           <svg>
             <use href="src/img/icons.svg#icon-calendar"></use>
           </svg>
@@ -340,7 +332,7 @@
           maxlength="10"
           id="task-name"
           name="task-name"
-          type="text"
+          type="date"
         />
 
         <label class="upload-task__label-description" for="task-description"
