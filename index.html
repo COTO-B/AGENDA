@@ -313,17 +313,19 @@
       <button type="button" class="btn--close-task-window">&times;</button>
 
       <form class="upload-task">
-        <label class="upload-task__label-description" for="task-calendar"
+        <label class="upload-task__label-Schedule" for="task-calendar"
           >Schedule</label
-        >
-        <button type="button" class="upload-task__input btn--open-calendar"
-        id="calendar"> <!--FIX:ver si sacar este id-->
+        >      
+        <div class="upload-task__calendar">
           <svg>
             <use href="src/img/icons.svg#icon-calendar"></use>
           </svg>
-          <span>Calendar</span>
-        </button>
-
+          
+          <input type="date" placeholder='Select a due date' class="upload-task__input upload-task__input-calendar"
+          id="calendar"> 
+        </div>  
+          
+        
         <label class="upload-task__name" for="task-name">Name</label>
         <input
           class="upload-task__input upload-task__input-name"
@@ -332,7 +334,7 @@
           maxlength="10"
           id="task-name"
           name="task-name"
-          type="date"
+          type="text"
         />
 
         <label class="upload-task__label-description" for="task-description"

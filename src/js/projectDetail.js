@@ -1,16 +1,20 @@
 import { toggleWindow, generateId, overlayTask, taskWindow } from "./helpers";
 import icons from "../img/icons.svg";
-
 import flatpickr from "flatpickr";
+import "core-js/stable";
 
 export const formTaskEl = document.querySelector(".upload-task");
 
 export const btnNewTaskOpen = document.querySelector(".project__btn--new-task");
 
+let a;
+
 export const btnNewTask = function () {
   //NOTE:VARIABLES
 
   const btnNewTaskClose = document.querySelector(".btn--close-task-window");
+
+  const inputDate = document.querySelector(".upload-task__input-calendar");
 
   //NOTE: FUNCTIONS
 
@@ -18,8 +22,17 @@ export const btnNewTask = function () {
   btnNewTaskOpen.addEventListener("click", function () {
     toggleWindow("task");
     formTaskEl.reset();
+
     //FIX:aca estoy, ver como poner calendario
-    flatpickr("#task-name", {});
+    //generating date instance
+    const inputDateResult = flatpickr(inputDate, {
+      altInput: true,
+      altFormat: "M j, Y",
+    });
+    //save data. no hay fecha cuando leo esta linea, ver si sacar la instancia para afuera
+    a = inputDateResult.formatDate(inputDateResult.selectedDates[0], "M j,Y");
+    //delete any previews date
+    // inputDateResult.clear();
   });
   //Close functionality
   overlayTask.addEventListener("click", function () {
@@ -42,7 +55,9 @@ export const createTaskObject = function () {
     ".upload-task__input-description"
   ).value;
 
-  //FIX:aca estoy, ver como poner calendario
+  console.log(a);
+
+  //FIX:aca estoy, ver como poner calendario. poner taskDate. en el markup sacar la fecha cuando no pongo ningun valor. ver como modificar la fecha, name y descrition de las task
 
   return {
     taskId: generateId("task"),

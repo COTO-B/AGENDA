@@ -70,7 +70,7 @@
     }
   }
 }
-
+//TODO:meter esto en upload
 .upload__input-description {
   height: 150px;
   resize: none;
@@ -87,23 +87,36 @@
   margin-top: 1rem;
 }
 
-.btn--open-calendar {
-  margin-right: auto;
+.upload-task {
+  &__calendar {
+    position: relative;
+    margin-bottom: 1rem;
+    transition: all 0.4s;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  & span {
-    padding-left: 5px;
+    &:hover {
+      fill: var(--color-primary-3);
+    }
   }
 
-  &:hover {
-    outline: none;
-    background-color: var(--color-grey-light-2);
-    fill: var(--color-primary-3);
-    color: var(--color-primary-3);
-    cursor: pointer;
+  & svg {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+    pointer-events: none;
+  }
+  &__input-calendar {
+    margin: 0;
+    margin-right: auto;
+    padding-left: 30px;
+    width: 100%;
+
+    &:hover {
+      background-color: var(--color-grey-light-2);
+      outline: none;
+      color: var(--color-primary-3);
+      cursor: pointer;
+    }
   }
 }
 

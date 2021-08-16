@@ -218,17 +218,16 @@ const APP = (function () {
     //FIX:aca estoy, ver como poner calendario
 
     //calendario en bton del add task
-    const inputTaskCalendar = document.querySelector(".btn--open-calendar");
 
-    // const inputTaskCalendar = document.querySelector(".project__btn-date");
-    flatpickr("#task-name", {});
-    inputTaskCalendar.addEventListener("click", function (e) {
-      e.preventDefault();
-      console.log(inputTaskCalendar);
-      flatpickr("#taskname", {});
-      console.log(flatpickr("#calendar", {}));
-    });
-    // --------------------calendario
+    // // const inputTaskCalendar = document.querySelector(".project__btn-date");
+    // flatpickr("#task-name", {});
+    // inputTaskCalendar.addEventListener("click", function (e) {
+    //   e.preventDefault();
+    //   console.log(inputTaskCalendar);
+    //   flatpickr("#taskname", {});
+    //   console.log(flatpickr("#calendar", {}));
+    // });
+    // // --------------------calendario
 
     //render project when changed
     window.addEventListener("hashchange", function () {
