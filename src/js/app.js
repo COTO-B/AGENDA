@@ -126,7 +126,20 @@ const APP = (function () {
   //task btns functionality
   const taskHeadBtns = function () {
     const taskHeadEl = document.querySelectorAll(".project__task-header");
-    // console.log(taskHeadEl); for each node list contain task icon btns
+    // console.log(taskHeadEl);
+
+    //FIX:ESTOY ACA este funcioana, ver abajo como leer el input
+    //TODO:test calendario, este funciona
+    const editTaskDateEl = document.querySelectorAll(".editTaskDate");
+    console.log(editTaskDateEl);
+
+    const editTaskDateInstance = flatpickr(editTaskDateEl, {
+      altInput: true,
+      altFormat: "M j, Y",
+      dateFormat: "M j,Y",
+    });
+    //-------------------
+    //for each node list contain task icon btns
     taskHeadEl.forEach(function (el) {
       el.addEventListener("click", function (e) {
         const taskIconBtn = e.target.closest(".project__btn-icon");
@@ -157,6 +170,30 @@ const APP = (function () {
 
         if (svg.dataset.icon === "calendar") {
           console.log("lanzar calendario");
+          //FIX:aca estoy
+          //TODO:calendario. leer el input. primero poner una fecha definida como value para poder leer
+
+          console.log(editTaskDateInstance);
+
+          console.log(editTaskDateEl.value); // no tiene value
+
+          console.log(editTaskDateInstance.selectedDates);
+
+          //lo crea solo para el de mas arriba. el query selector tambien muesrta solo el de mas arriba, me parece que crea solo el ultimo, pruebo con queryAll
+
+          // const editTaskDateEl = document.querySelectorAll(".editTaskDate");
+          // console.log(editTaskDateEl);
+
+          // const editTaskDateInstance = flatpickr(editTaskDateEl, {
+          //   altInput: true,
+          //   altFormat: "M j, Y",
+          //   dateFormat: "M j,Y",
+          // });
+
+          // editTaskDateInstance.open();
+
+          //lanzar calendario
+          //guardar data en taskDate
         }
         setLocalStorage(projects);
       });
@@ -203,10 +240,7 @@ const APP = (function () {
       setLocalStorage(projects);
       console.log(projects);
 
-      //FIX:aca estoy, ver como poner calendario
-      //REVIEW: Si no pongo fecha sacar el boton.
       //render project detail
-      //FIX:revisar libreria para mostrar calendario. en bankist en js ver labelDate para mostrar la fecha
       renderProjectDetail(activeProject());
       //close window
       toggleWindow("task");
@@ -214,20 +248,6 @@ const APP = (function () {
       taskHeadBtns();
       //TODO:dspues de crear el task mover a la parte de arriba del project detail window para ver el task recien creado, esto pasa cuando hay muchas task, hacer TEST:
     });
-
-    //FIX:aca estoy, ver como poner calendario
-
-    //calendario en bton del add task
-
-    // // const inputTaskCalendar = document.querySelector(".project__btn-date");
-    // flatpickr("#task-name", {});
-    // inputTaskCalendar.addEventListener("click", function (e) {
-    //   e.preventDefault();
-    //   console.log(inputTaskCalendar);
-    //   flatpickr("#taskname", {});
-    //   console.log(flatpickr("#calendar", {}));
-    // });
-    // // --------------------calendario
 
     //render project when changed
     window.addEventListener("hashchange", function () {
