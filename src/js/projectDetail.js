@@ -108,8 +108,8 @@ export const createProjectTaskMarkup = function (projectTaskObject) {
         <svg>
           <use data-icon="calendar" href="${icons}#icon-calendar"></use>
         </svg>
-        <span>${projectTaskObject.taskDate}</span>
-        <input type="text" class ="editTaskDate" placeholder="${
+        
+        <input type="text" class ="editTaskDate" value="${
           projectTaskObject.taskDate
         }">
       </button>

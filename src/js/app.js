@@ -13,9 +13,10 @@ import icons from "../img/icons.svg";
 //calendar
 import flatpickr from "flatpickr";
 import { btnNewProject, createProjectObject, formProjectEl } from "./header";
-import createProjectMarkup from "./projectList";
+import { createProjectMarkup } from "./projectList";
+
 import { toggleWindow } from "./helpers";
-import { btnNewTask } from "./projectDetail";
+
 import {
   createTaskObject,
   formTaskEl,
@@ -23,6 +24,7 @@ import {
   createProjectTaskMarkup,
   createProjectBtnTaskMarkup,
   btnNewTaskOpen,
+  btnNewTask,
   initialMessage,
 } from "./projectDetail";
 
@@ -42,14 +44,16 @@ const APP = (function () {
 
   //NOTE:FUNCTIONS---------------------------
 
-  //FIX:quede aca revisar para que cuando no existe la pagina (hash) salir de la funcion o definir el actieprojectobject como otra cosa.
-
   const activeProject = function () {
     const id = +window.location.hash.slice(1);
 
     const activeProjectObject = projects.find((proj) => proj.projectId === id);
 
     return activeProjectObject;
+  };
+
+  const findActiveTask = function (activeTaskId) {
+    return activeProject().projectTask.find((t) => t.taskId === activeTaskId);
   };
 
   const renderList = function () {
@@ -106,7 +110,7 @@ const APP = (function () {
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
-  //task btns functionality circle function
+  //circle task btns functionality
   const circleBtnTaskToggle = function (taskIconBtn, svg) {
     let taskCheck;
 
@@ -128,16 +132,21 @@ const APP = (function () {
     const taskHeadEl = document.querySelectorAll(".project__task-header");
     // console.log(taskHeadEl);
 
-    //FIX:ESTOY ACA este funcioana, ver abajo como leer el input
-    //TODO:test calendario, este funciona
-    const editTaskDateEl = document.querySelectorAll(".editTaskDate");
-    console.log(editTaskDateEl);
-
-    const editTaskDateInstance = flatpickr(editTaskDateEl, {
+    //create date instances
+    flatpickr(".editTaskDate", {
       altInput: true,
       altFormat: "M j, Y",
-      dateFormat: "M j,Y",
+      dateFormat: "M j, Y",
+      onChange: function (dateObj, dateStr, input) {
+        const activeTaskId = +input.input.closest(".project__task-header")
+          .dataset.taskid;
+
+        findActiveTask(activeTaskId).taskDate = dateStr;
+
+        setLocalStorage(projects);
+      },
     });
+
     //-------------------
     //for each node list contain task icon btns
     taskHeadEl.forEach(function (el) {
@@ -148,53 +157,27 @@ const APP = (function () {
 
         let taskCheckState;
         const activeTaskId = +taskIconBtn.parentElement.dataset.taskid;
-        const activeTask = activeProject().projectTask.find(
-          (t) => t.taskId === activeTaskId
-        );
+
         const svg = taskIconBtn.children[0].children[0];
 
+        //set checkmark
         if (svg.dataset.icon === "circle") {
           taskCheckState = circleBtnTaskToggle(taskIconBtn, svg);
 
-          activeTask.taskCheck = taskCheckState;
+          findActiveTask(activeTaskId).taskCheck = taskCheckState;
         }
 
+        //delete task
         if (svg.dataset.icon === "delete") {
-          const indexActiveTask =
-            activeProject().projectTask.indexOf(activeTask);
+          const indexActiveTask = activeProject().projectTask.indexOf(
+            findActiveTask(activeTaskId)
+          );
           //remove from object
           activeProject().projectTask.splice(indexActiveTask, 1);
           //remove from DOM
           el.parentElement.remove();
         }
 
-        if (svg.dataset.icon === "calendar") {
-          console.log("lanzar calendario");
-          //FIX:aca estoy
-          //TODO:calendario. leer el input. primero poner una fecha definida como value para poder leer
-
-          console.log(editTaskDateInstance);
-
-          console.log(editTaskDateEl.value); // no tiene value
-
-          console.log(editTaskDateInstance.selectedDates);
-
-          //lo crea solo para el de mas arriba. el query selector tambien muesrta solo el de mas arriba, me parece que crea solo el ultimo, pruebo con queryAll
-
-          // const editTaskDateEl = document.querySelectorAll(".editTaskDate");
-          // console.log(editTaskDateEl);
-
-          // const editTaskDateInstance = flatpickr(editTaskDateEl, {
-          //   altInput: true,
-          //   altFormat: "M j, Y",
-          //   dateFormat: "M j,Y",
-          // });
-
-          // editTaskDateInstance.open();
-
-          //lanzar calendario
-          //guardar data en taskDate
-        }
         setLocalStorage(projects);
       });
     });

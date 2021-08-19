@@ -1,7 +1,7 @@
 //RENDER LIST
 import icons from "../img/icons.svg";
 
-const createProjectMarkup = function (projectObject) {
+export const createProjectMarkup = function (projectObject) {
   //NOTE:VARIABLES
 
   const id = +window.location.hash.slice(1);
@@ -31,4 +31,6 @@ const createProjectMarkup = function (projectObject) {
   return markup;
 };
 
-export default createProjectMarkup;
+export const a = function () {
+  console.log("a");
+};
