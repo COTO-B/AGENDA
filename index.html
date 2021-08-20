@@ -43,10 +43,10 @@
 
       <section class="project-list">
         <ul class="list">
-          <!--despues borrar todo este li-->
+          <!--FIX:despues borrar todo este li-->
           <li class="preview">
             <!--REVIEW: agregar al lado del circule cara feliz cuando el pro este completo-->
-            <a class="preview__link preview__link--active" href="#1111">
+            <!-- <a class="preview__link preview__link--active" href="#1111">
               <span class="color__item-circle color__item-circle--2"></span>
               <h3 class="preview__title">Project 911111111</h3>
 
@@ -57,7 +57,7 @@
                   ></use>
                 </svg>
               </button>
-            </a>
+            </a> -->
           </li>
         </ul>
       </section>
@@ -362,12 +362,40 @@ Lorem, ipsum dolor sit amet       consectetur adipisicing elit. Totam incidunt h
 
     <!-- FIX:ACA ESTOY -->
     <!-- revisar en las task cuando hago click sobre el titulo o la descripcion (poner pointer en hover) que me tire a la ventana de add task pero con la info cargada para editar y el boton que salga save -->
-    <div class=" edit-project-window">
-<!-- aca cuando hago clik en titulo o desc del proj que me tire al modal de edit -->
-<!-- edit, este lo tira a la ventana de crear projecto pero con la info cargada y el boton se llama save -->
-<!-- delete -->
-<!-- 😄compleated o uncompleated -->
 
+    <!-- aca cuando hago clik en titulo o desc del proj que me tire al modal de edit -->
+    <!-- edit, este lo tira a la ventana de crear projecto pero con la info cargada y el boton se llama save -->
+    <!-- delete -->
+    <!-- 😄compleated o uncompleated -->
+    <!-- hover out cerrar window -->
+
+    <div class="edit-project-window">
+      <ul>
+        <li>
+          <svg>
+            <use data-icon="calendar" href="src/img/icons.svg#icon-edit-pencil"></use>
+          </svg>
+          <span>Edit</span>
+        </li>
+        <li>
+          <svg>
+            <use data-icon="calendar" href="src/img/icons.svg#icon-trash"></use>
+          </svg>
+          <span>Delete</span>
+        </li>
+        <li>
+          <svg>
+            <use data-icon="calendar" href="src/img/icons.svg#icon-trash"></use>
+          </svg>
+          <span>Delete</span>
+        </li>
+      </ul>
     </div>
+    
+    
+    
+      <!-- <button class=" btn--edit-project">edit</button>
+      <button class=" btn--delete-project">delete</button>
+      <button class=" btn--status-project">status</button> -->
   </body>
 </html>

@@ -40,10 +40,11 @@ const APP = (function () {
 
   const projectTaskEl = document.querySelector(".project__task-list");
   //save data
+
   let projects = [];
 
   //NOTE:FUNCTIONS---------------------------
-
+  //TODO:cambiar por findActiveProject
   const activeProject = function () {
     const id = +window.location.hash.slice(1);
 
@@ -148,7 +149,7 @@ const APP = (function () {
     });
 
     //-------------------
-    //for each node list contain task icon btns
+    //for each node list that contain task icon btns
     taskHeadEl.forEach(function (el) {
       el.addEventListener("click", function (e) {
         const taskIconBtn = e.target.closest(".project__btn-icon");
@@ -179,6 +180,30 @@ const APP = (function () {
         }
 
         setLocalStorage(projects);
+      });
+    });
+  };
+
+  //edit project functionality
+  const editProjectBtn = function () {
+    const editProjectEl = document.querySelectorAll(".preview__btn--window");
+
+    editProjectEl.forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        console.log("aaaa");
+        const editBtn = e.target.closest(".preview__link");
+        console.log("edit mtf");
+        console.log(editBtn);
+        console.log(editBtn.hash.slice(1));
+        console.log(activeProject());
+
+        console.log(editBtn.childNodes);
+        console.log(editBtn.childNodes[7]);
+        //FIX:ACA ESTOY no me funca tengo que apretar dos veces para que salga el modal,debe ser pq cando saco la clase hidden no se ejecuta nuevemente el render.
+        //TODO:poner que cuando hago click afuera se hidden el window
+
+        editBtn.childNodes[7].classList.remove("hidden");
+        console.log(editBtn.childNodes[7]);
       });
     });
   };
@@ -235,13 +260,19 @@ const APP = (function () {
     //render project when changed
     window.addEventListener("hashchange", function () {
       renderList();
+
       renderProjectDetail(activeProject());
       //Load Project task head btns functionalitya
       taskHeadBtns();
+      //edit project functionality
+      editProjectBtn();
     });
 
     //Load Project task head btns functionality
     taskHeadBtns();
+
+    //edit project functionality
+    editProjectBtn();
   };
 
   //NOTE: INIT-------------------------------

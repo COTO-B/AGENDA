@@ -5,7 +5,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw; // REVIEW:poner media queries y revisar si es vh o %
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 9px;
 
   padding: 2.5rem 4rem;

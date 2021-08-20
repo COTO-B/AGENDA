@@ -25,6 +25,31 @@ export const createProjectMarkup = function (projectObject) {
             href="${icons}#icon-dots-three-horizontal"></use>
         </svg>
       </button>
+      
+      <div class="edit-project-window hidden">
+        <ul>
+          <li class="edit-project">
+            <svg>
+              <use data-icon="calendar" href="${icons}#icon-edit-pencil"></use>
+            </svg>
+            <span>Edit</span>
+          </li>
+          <li class="delete-project">
+            <svg>
+              <use data-icon="calendar" href="${icons}#icon-trash"></use>
+            </svg>
+            <span>Delete</span>
+          </li>
+          <li class="status-project">
+            <svg>
+              <use data-icon="calendar" href="${icons}#icon-trash"></use>
+            </svg>
+            <span>Delete</span>
+          </li>
+        </ul>
+      </div>
+    
+
     </a>
   </li>`;
 
