@@ -1,7 +1,7 @@
 //RENDER LIST
 import icons from "../img/icons.svg";
 
-export const createProjectMarkup = function (projectObject) {
+export const createProjectMarkup = function (projectObject, edit = false) {
   //NOTE:VARIABLES
 
   const id = +window.location.hash.slice(1);
@@ -26,7 +26,7 @@ export const createProjectMarkup = function (projectObject) {
         </svg>
       </button>
       
-      <div class="edit-project-window hidden">
+      <div class="edit-project-window ${edit === "show" ? "" : "hidden"}" >
         <ul>
           <li class="edit-project">
             <svg>

@@ -192,18 +192,37 @@ const APP = (function () {
       el.addEventListener("click", function (e) {
         console.log("aaaa");
         const editBtn = e.target.closest(".preview__link");
-        console.log("edit mtf");
+
+        console.log(editBtn.parentElement);
+
         console.log(editBtn);
-        console.log(editBtn.hash.slice(1));
+
+        const id = +editBtn.hash.slice(1);
+        console.log(id);
+
         console.log(activeProject());
 
-        console.log(editBtn.childNodes);
-        console.log(editBtn.childNodes[7]);
+        const proy = projects.find((proj) => proj.projectId === id);
+        console.log(proy);
+
+        //FIX:no me funciono esto se muestra pero vuelve altiro al anterior debe ser algo con la ejecucion del render list y este boton , cuando cambia el hash talvez probar async
+
+        // editBtn.parentElement.innerHTML = "";
+        editBtn.parentElement.insertAdjacentHTML(
+          "afterbegin",
+          createProjectMarkup(proy, "show")
+        );
+
         //FIX:ACA ESTOY no me funca tengo que apretar dos veces para que salga el modal,debe ser pq cando saco la clase hidden no se ejecuta nuevemente el render.
         //TODO:poner que cuando hago click afuera se hidden el window
 
-        editBtn.childNodes[7].classList.remove("hidden");
-        console.log(editBtn.childNodes[7]);
+        //FIX: nose si debe ir este ya que modifico el markup dandole un argumento
+        // console.log(editBtn.childNodes[7]);
+        // console.log(editBtn.childNodes);
+
+        // editBtn.childNodes[7].classList.remove("hidden");
+
+        // console.log(editBtn.childNodes[7]);
       });
     });
   };
