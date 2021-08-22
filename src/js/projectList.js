@@ -9,15 +9,16 @@ export const createProjectMarkup = function (projectObject, edit = false) {
 
   //haciendo el markup
   const markup = `
-  <li class="preview">
+  <li class="preview ${
+    projectObject.projectId === id ? "preview--active" : ""
+  }">
   
-    <a class="preview__link ${
-      projectObject.projectId === id ? "preview__link--active" : ""
-    }" href="#${projectObject.projectId}">
-      <span class="color__item-circle color__item-circle--${
-        projectObject.projectColor
-      }"></span>
-      <h3 class="preview__title">${projectObject.projectName}</h3>
+    <a class="preview__link" href="#${projectObject.projectId}">
+    <span class="color__item-circle color__item-circle--${
+      projectObject.projectColor
+    }"></span>
+    <h3 class="preview__title">${projectObject.projectName}</h3>    
+    </a>
 
       <button type="button" class="btn btn--small preview__btn--window">
         <svg class="preview__btn--edit">
@@ -50,7 +51,6 @@ export const createProjectMarkup = function (projectObject, edit = false) {
       </div>
     
 
-    </a>
   </li>`;
 
   return markup;

@@ -184,6 +184,7 @@ const APP = (function () {
     });
   };
 
+  //FIX:aca estoy cambien los botones de lugar revisar los queryselector. cuando hago click en el boton hacer cambio de hash para que quede activo,lo encuentro revisando al primer hermann el de mas arriba en el dom
   //edit project functionality
   const editProjectBtn = function () {
     const editProjectEl = document.querySelectorAll(".preview__btn--window");
@@ -205,22 +206,23 @@ const APP = (function () {
         const proy = projects.find((proj) => proj.projectId === id);
         console.log(proy);
 
-        //FIX:no me funciono esto se muestra pero vuelve altiro al anterior debe ser algo con la ejecucion del render list y este boton , cuando cambia el hash talvez probar async
-
+        //TEST:talvez borrar el editBtn y no el padre
         // editBtn.parentElement.innerHTML = "";
-        editBtn.parentElement.insertAdjacentHTML(
-          "afterbegin",
-          createProjectMarkup(proy, "show")
-        );
 
-        //FIX:ACA ESTOY no me funca tengo que apretar dos veces para que salga el modal,debe ser pq cando saco la clase hidden no se ejecuta nuevemente el render.
+        // editBtn.parentElement.insertAdjacentHTML(
+        //   "afterbegin",
+        //   createProjectMarkup(proy, "show")
+        // );
+
         //TODO:poner que cuando hago click afuera se hidden el window
 
         //FIX: nose si debe ir este ya que modifico el markup dandole un argumento
         // console.log(editBtn.childNodes[7]);
         // console.log(editBtn.childNodes);
 
-        // editBtn.childNodes[7].classList.remove("hidden");
+        editBtn.childNodes[7].classList.remove("hidden");
+
+        //FIX:nueva forma cargar el hash
 
         // console.log(editBtn.childNodes[7]);
       });

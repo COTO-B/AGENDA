@@ -10,54 +10,65 @@
 }
 
 .preview {
+  //FIX:aca estoy arreglar que el hover del li se pinte todo hasta la izquierda
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // padding: 0.7rem 0;
+  border-radius: 6px;
+  // transition: all 0.4s;
 
+  &:hover,
+  &:active {
+    background-color: var(--color-primary-2);
+  }
+
+  //clase activa
+  &--active {
+    background-color: var(--color-primary-2);
+  }
+
+  //FIX:revisar para que el boton sea el mismo alto que el previw li igual al link
+  & button {
+    background-color: chartreuse;
+    // padding: 0.9rem 1rem 0.9rem 0;
+    padding: auto;
+  }
+
+  svg {
+    height: 1.6rem;
+    width: 1.6rem;
+
+    fill: var(--color-primary-3);
+    transition: all 0.4s;
+
+    &:hover,
+    &:active {
+      fill: var(--color-grey-dark-3);
+    }
+  }
+
+  //meter esta adetro de link
   &__title {
-    flex-grow: 1;
     padding-left: 10px;
   }
 
   &__link {
-    //REVIEW:ver si se necesita poner esto en link y visited
-    // &:link,
-    // &:visited {
-    // }
+    flex-grow: 1;
+    &:hover {
+      background-color: crimson;
+    }
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 0 0.7rem 1rem;
 
     font-size: 1.15rem;
     font-weight: 600;
     text-decoration: none;
     color: var(--color-grey-dark-3);
-    border-radius: 6px;
-
-    transition: all 0.4s;
-
-    &:hover,
-    &:active {
-      background-color: var(--color-primary-2);
-    }
-
-    svg {
-      height: 1.6rem;
-      width: 1.6rem;
-
-      fill: var(--color-primary-3);
-      transition: all 0.4s;
-
-      &:hover,
-      &:active {
-        fill: var(--color-grey-dark-3);
-      }
-    }
-
-    //clase activa
-    &--active {
-      background-color: var(--color-primary-2);
-    }
   }
 }
 
