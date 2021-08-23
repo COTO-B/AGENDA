@@ -184,7 +184,8 @@ const APP = (function () {
     });
   };
 
-  //FIX:aca estoy cambien los botones de lugar revisar los queryselector. cuando hago click en el boton hacer cambio de hash para que quede activo,lo encuentro revisando al primer hermann el de mas arriba en el dom
+  //FIX:revisar pq el event hash change se ejecuta al final cuando cambio el hash adentro del event del boton . un event que trigger otro event revisar eso. guardar si esta mostrando el edit window wn una vaiable en el objeto(activeproyect) y hacer como test id en el markup pero con div hidden.
+  //actalmente no me funca pq haschange hace render todo nuevamente. poner que la clase quede hidden si con el mouse salgo del edit window , tb cuando hago clik afuera??? para celular????
   //edit project functionality
   const editProjectBtn = function () {
     const editProjectEl = document.querySelectorAll(".preview__btn--window");
@@ -192,10 +193,24 @@ const APP = (function () {
     editProjectEl.forEach(function (el) {
       el.addEventListener("click", function (e) {
         console.log("aaaa");
-        const editBtn = e.target.closest(".preview__link");
+        const id = el.previousElementSibling.hash;
+        console.log(id);
 
-        console.log(editBtn.parentElement);
+        console.log(activeProject());
+        window.location.hash = id;
+        console.log(activeProject());
 
+        console.log("bbbbbbbbb");
+
+        const editWindow = el.nextElementSibling;
+        console.log(editWindow);
+
+        editWindow.classList.remove("hidden");
+        console.log(editWindow);
+
+        //-----------------------------
+        /*
+        // const editBtn = e.target.closest(".preview__link");
         console.log(editBtn);
 
         const id = +editBtn.hash.slice(1);
@@ -225,6 +240,8 @@ const APP = (function () {
         //FIX:nueva forma cargar el hash
 
         // console.log(editBtn.childNodes[7]);
+  //-------------------------
+  */
       });
     });
   };
@@ -280,8 +297,9 @@ const APP = (function () {
 
     //render project when changed
     window.addEventListener("hashchange", function () {
-      renderList();
+      console.log("hash change");
 
+      renderList();
       renderProjectDetail(activeProject());
       //Load Project task head btns functionalitya
       taskHeadBtns();

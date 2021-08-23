@@ -10,14 +10,13 @@
 }
 
 .preview {
-  //FIX:aca estoy arreglar que el hover del li se pinte todo hasta la izquierda
   list-style-type: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // padding: 0.7rem 0;
+
   border-radius: 6px;
-  // transition: all 0.4s;
+  height: 3rem;
 
   &:hover,
   &:active {
@@ -29,11 +28,15 @@
     background-color: var(--color-primary-2);
   }
 
-  //FIX:revisar para que el boton sea el mismo alto que el previw li igual al link
   & button {
-    background-color: chartreuse;
-    // padding: 0.9rem 1rem 0.9rem 0;
-    padding: auto;
+    &:hover {
+      background-color: chartreuse;
+    }
+
+    display: flex;
+    align-items: center;
+    padding: 0 1rem 0 0.3rem;
+    height: 3rem;
   }
 
   svg {
@@ -49,21 +52,21 @@
     }
   }
 
-  //meter esta adetro de link
+  //TODO:meter esta adetro de link
   &__title {
     padding-left: 10px;
   }
 
   &__link {
-    flex-grow: 1;
     &:hover {
       background-color: crimson;
     }
-
+    height: 3rem;
+    padding-left: 1rem;
+    flex-grow: 1;
     display: flex;
     align-items: center;
-
-    padding: 0.7rem 0 0.7rem 1rem;
+    // padding: 0.7rem 0 0.7rem 1rem;
 
     font-size: 1.15rem;
     font-weight: 600;
