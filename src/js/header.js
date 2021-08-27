@@ -89,6 +89,7 @@ export const createProjectObject = function () {
     projectName: `${inputProjectName}`,
     projectColor: `${inputProjectColor}`,
     projectDescription: `${inputProjectDescription}`,
+    projectEditWindow: false,
     projectTask: [],
   };
 };

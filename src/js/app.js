@@ -45,8 +45,10 @@ const APP = (function () {
 
   //NOTE:FUNCTIONS---------------------------
   //TODO:cambiar por findActiveProject
-  const activeProject = function () {
-    const id = +window.location.hash.slice(1);
+  const activeProject = function (hash = false) {
+    const id = hash === false ? +window.location.hash.slice(1) : +hash;
+
+    console.log(id);
 
     const activeProjectObject = projects.find((proj) => proj.projectId === id);
 
@@ -191,58 +193,42 @@ const APP = (function () {
     const editProjectEl = document.querySelectorAll(".preview__btn--window");
 
     editProjectEl.forEach(function (el) {
-      el.addEventListener("click", function (e) {
+      el.addEventListener("click", function () {
         console.log("aaaa");
-        const id = el.previousElementSibling.hash;
+        const id = el.previousElementSibling.hash.slice(1);
         console.log(id);
 
-        console.log(activeProject());
-        window.location.hash = id;
-        console.log(activeProject());
+        activeProject(id).projectEditWindow = false;
+        console.log(activeProject(id));
+        setLocalStorage(projects);
 
-        console.log("bbbbbbbbb");
+        el.nextElementSibling.classList.remove("hidden");
 
-        const editWindow = el.nextElementSibling;
-        console.log(editWindow);
+        // console.log(activeProject());
+        // window.location.hash = id;
 
-        editWindow.classList.remove("hidden");
-        console.log(editWindow);
-
-        //-----------------------------
-        /*
-        // const editBtn = e.target.closest(".preview__link");
-        console.log(editBtn);
-
-        const id = +editBtn.hash.slice(1);
-        console.log(id);
-
-        console.log(activeProject());
-
-        const proy = projects.find((proj) => proj.projectId === id);
-        console.log(proy);
-
-        //TEST:talvez borrar el editBtn y no el padre
-        // editBtn.parentElement.innerHTML = "";
-
-        // editBtn.parentElement.insertAdjacentHTML(
-        //   "afterbegin",
-        //   createProjectMarkup(proy, "show")
-        // );
-
-        //TODO:poner que cuando hago click afuera se hidden el window
-
-        //FIX: nose si debe ir este ya que modifico el markup dandole un argumento
-        // console.log(editBtn.childNodes[7]);
-        // console.log(editBtn.childNodes);
-
-        editBtn.childNodes[7].classList.remove("hidden");
-
-        //FIX:nueva forma cargar el hash
-
-        // console.log(editBtn.childNodes[7]);
-  //-------------------------
-  */
+        /* FIX:ESTOY ACA. hacer algo asi, revisar que hace psuh state 
+//change ID in URL hash
+window.history.pushState(
+  null,
+  "",
+  `#${projects[projects.length - 1].projectId}`
+);
+//render project on list
+renderList();
+//render project detail
+renderProjectDetail(activeProject());
+// close window
+toggleWindow("project");
+*/
       });
+
+      console.log(el.nextElementSibling);
+
+      // el.nextElementSibling.addEventListener("mouseout", function () {
+      //   el.nextElementSibling.classList.add("hidden");
+      //   console.log(activeProject());
+      // });
     });
   };
 

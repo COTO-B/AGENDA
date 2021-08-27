@@ -27,7 +27,9 @@ export const createProjectMarkup = function (projectObject) {
       </svg>
     </button>
       
-    <div class="edit-project-window hidden" >
+    <div class="edit-project-window ${
+      projectObject.projectEditWindow === false ? "hidden" : ""
+    } " >
       <ul>
         <li class="edit-project">
           <svg>
