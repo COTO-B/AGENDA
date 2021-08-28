@@ -198,32 +198,43 @@ const APP = (function () {
         const id = el.previousElementSibling.hash.slice(1);
         console.log(id);
 
+        el.nextElementSibling.classList.remove("hidden");
+        console.log("aaaaaaaaaaaa");
+
+        // if (!e.target.closest(".edit-project-window")) {
+        //   console.log("afuera");
+        //   edit.classList.add("hidden");
+        // }
+
+        /*
         activeProject(id).projectEditWindow = false;
         console.log(activeProject(id));
         setLocalStorage(projects);
 
-        el.nextElementSibling.classList.remove("hidden");
-
         // console.log(activeProject());
         // window.location.hash = id;
+*/
+        /* FIX:ESTOY ACA. hacer algo asi, revisar que hace psuh state , este no genera hash change
 
-        /* FIX:ESTOY ACA. hacer algo asi, revisar que hace psuh state 
-//change ID in URL hash
-window.history.pushState(
-  null,
-  "",
-  `#${projects[projects.length - 1].projectId}`
-);
-//render project on list
-renderList();
-//render project detail
-renderProjectDetail(activeProject());
-// close window
-toggleWindow("project");
 */
       });
+      const edit = el.nextElementSibling;
 
-      console.log(el.nextElementSibling);
+      console.log(edit);
+      window.addEventListener("click", function (e) {
+        console.log("win");
+        console.log(e.target);
+
+        console.log(e.target.closest(".edit-project-window"));
+
+        //FIX:ACA ESTOY
+        if (!e.target.closest(".edit-project-window")) {
+          console.log("afuera");
+          //parece que se estan agregando varios hidden (parece que se agrega un vez no mas) a todas las ventanas del modal, solo agregar hiddden a la que esta activa
+
+          edit.classList.add("hidden");
+        }
+      });
 
       // el.nextElementSibling.addEventListener("mouseout", function () {
       //   el.nextElementSibling.classList.add("hidden");
@@ -287,7 +298,7 @@ toggleWindow("project");
 
       renderList();
       renderProjectDetail(activeProject());
-      //Load Project task head btns functionalitya
+      //Load Project task head btns functionality
       taskHeadBtns();
       //edit project functionality
       editProjectBtn();
