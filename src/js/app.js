@@ -191,56 +191,63 @@ const APP = (function () {
   //edit project functionality
   const editProjectBtn = function () {
     const editProjectEl = document.querySelectorAll(".preview__btn--window");
+    const overlayEdit = document.querySelector(".overlay-edit");
+
+    let id;
 
     editProjectEl.forEach(function (el) {
+      el.addEventListener("click", function () {
+        console.log("aaaa");
+
+        const activeEditEl = el.previousElementSibling;
+        console.log(activeEditEl);
+
+        id = el.previousElementSibling.href;
+        console.log(id);
+
+        el.nextElementSibling.classList.remove("hidden");
+        overlayEdit.classList.remove("hidden");
+        console.log("aaaaaaaaaaaa");
+      });
+    });
+
+    overlayEdit.addEventListener("click", function () {
+      console.log("overayyyyy");
+      console.log(id);
+      //FIX: ACA ESTOY ........seleccionar la tag a pero con un href especifico, FUNCIONA,
+
+      const atag = document.querySelectorAll("a[href='#3726566597791']");
+      console.log(atag);
+      //seleccionar al next next hermaano
+      console.log(atag[0].nextElementSibling);
+      overlayEdit.classList.add("hidden");
+    });
+
+    //  FIX:este funcioana pero aplica 6 veces el overlay, ver si arreglar
+    /*
+     editProjectEl.forEach(function (el) {
       el.addEventListener("click", function () {
         console.log("aaaa");
         const id = el.previousElementSibling.hash.slice(1);
         console.log(id);
 
         el.nextElementSibling.classList.remove("hidden");
+        overlayEdit.classList.remove("hidden");
         console.log("aaaaaaaaaaaa");
-
-        // if (!e.target.closest(".edit-project-window")) {
-        //   console.log("afuera");
-        //   edit.classList.add("hidden");
-        // }
-
-        /*
-        activeProject(id).projectEditWindow = false;
-        console.log(activeProject(id));
-        setLocalStorage(projects);
-
-        // console.log(activeProject());
-        // window.location.hash = id;
-*/
-        /* FIX:ESTOY ACA. hacer algo asi, revisar que hace psuh state , este no genera hash change
-
-*/
       });
+
       const edit = el.nextElementSibling;
 
       console.log(edit);
-      window.addEventListener("click", function (e) {
-        console.log("win");
-        console.log(e.target);
 
-        console.log(e.target.closest(".edit-project-window"));
-
-        //FIX:ACA ESTOY
-        if (!e.target.closest(".edit-project-window")) {
-          console.log("afuera");
-          //parece que se estan agregando varios hidden (parece que se agrega un vez no mas) a todas las ventanas del modal, solo agregar hiddden a la que esta activa
-
-          edit.classList.add("hidden");
-        }
+      overlayEdit.addEventListener("click", function () {
+        console.log("overayyyyy");
+        overlayEdit.classList.add("hidden");
+        el.nextElementSibling.classList.add("hidden");
       });
-
-      // el.nextElementSibling.addEventListener("mouseout", function () {
-      //   el.nextElementSibling.classList.add("hidden");
-      //   console.log(activeProject());
-      // });
+      
     });
+    */
   };
 
   //NOTE:EVENTS.
