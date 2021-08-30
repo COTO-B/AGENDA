@@ -93,3 +93,36 @@ export const createProjectObject = function () {
     projectTask: [],
   };
 };
+
+export const editProjectBtn = function () {
+  const editProjectEl = document.querySelectorAll(".preview__btn--window");
+  const overlayEdit = document.querySelector(".overlay-edit");
+
+  let id;
+
+  //open edit window
+  editProjectEl.forEach(function (el) {
+    el.addEventListener("click", function () {
+      id = el.previousElementSibling.hash;
+
+      el.nextElementSibling.classList.remove("hidden");
+      overlayEdit.classList.remove("hidden");
+    });
+  });
+
+  //hide edit  window
+  overlayEdit.addEventListener("click", function () {
+    const editWindow = document.querySelectorAll(`a[href='${id}']`)[0]
+      .parentElement.children[2];
+
+    editWindow.classList.add("hidden");
+    overlayEdit.classList.add("hidden");
+  });
+
+  //edit proyect
+  //FIX:aca quede, seleccionar el edit actual talvez ocupar el mismo de editwindow de arriba talvez definirlo mas arriba o no
+  const editProject = document.querySelector(".edit-project");
+  console.log(editProject);
+
+  //delete proyect
+};

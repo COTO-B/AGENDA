@@ -12,7 +12,12 @@ import "core-js/stable";
 import icons from "../img/icons.svg";
 //calendar
 import flatpickr from "flatpickr";
-import { btnNewProject, createProjectObject, formProjectEl } from "./header";
+import {
+  btnNewProject,
+  createProjectObject,
+  formProjectEl,
+  editProjectBtn,
+} from "./header";
 import { createProjectMarkup } from "./projectList";
 
 import { toggleWindow } from "./helpers";
@@ -184,70 +189,6 @@ const APP = (function () {
         setLocalStorage(projects);
       });
     });
-  };
-
-  //FIX:revisar pq el event hash change se ejecuta al final cuando cambio el hash adentro del event del boton . un event que trigger otro event revisar eso. guardar si esta mostrando el edit window wn una vaiable en el objeto(activeproyect) y hacer como test id en el markup pero con div hidden.
-  //actalmente no me funca pq haschange hace render todo nuevamente. poner que la clase quede hidden si con el mouse salgo del edit window , tb cuando hago clik afuera??? para celular????
-  //edit project functionality
-  const editProjectBtn = function () {
-    const editProjectEl = document.querySelectorAll(".preview__btn--window");
-    const overlayEdit = document.querySelector(".overlay-edit");
-
-    let id;
-
-    editProjectEl.forEach(function (el) {
-      el.addEventListener("click", function () {
-        console.log("aaaa");
-
-        const activeEditEl = el.previousElementSibling;
-        console.log(activeEditEl);
-
-        id = el.previousElementSibling.href;
-        console.log(id);
-
-        el.nextElementSibling.classList.remove("hidden");
-        overlayEdit.classList.remove("hidden");
-        console.log("aaaaaaaaaaaa");
-      });
-    });
-
-    overlayEdit.addEventListener("click", function () {
-      console.log("overayyyyy");
-      console.log(id);
-      //FIX: ACA ESTOY ........seleccionar la tag a pero con un href especifico, FUNCIONA,
-
-      const atag = document.querySelectorAll("a[href='#3726566597791']");
-      console.log(atag);
-      //seleccionar al next next hermaano
-      console.log(atag[0].nextElementSibling);
-      overlayEdit.classList.add("hidden");
-    });
-
-    //  FIX:este funcioana pero aplica 6 veces el overlay, ver si arreglar
-    /*
-     editProjectEl.forEach(function (el) {
-      el.addEventListener("click", function () {
-        console.log("aaaa");
-        const id = el.previousElementSibling.hash.slice(1);
-        console.log(id);
-
-        el.nextElementSibling.classList.remove("hidden");
-        overlayEdit.classList.remove("hidden");
-        console.log("aaaaaaaaaaaa");
-      });
-
-      const edit = el.nextElementSibling;
-
-      console.log(edit);
-
-      overlayEdit.addEventListener("click", function () {
-        console.log("overayyyyy");
-        overlayEdit.classList.add("hidden");
-        el.nextElementSibling.classList.add("hidden");
-      });
-      
-    });
-    */
   };
 
   //NOTE:EVENTS.
