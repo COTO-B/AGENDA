@@ -41,7 +41,8 @@
 }
 
 .hidden {
-  visibility: hidden;
+  // visibility: hidden;
+  display: none;
   opacity: 0;
 }
 
@@ -83,6 +84,7 @@
 }
 
 .upload__btn--add-project,
+.upload__btn--save-project,
 .upload-task__btn--add-task {
   margin: auto;
   margin-top: 1rem;

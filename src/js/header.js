@@ -94,35 +94,66 @@ export const createProjectObject = function () {
   };
 };
 
-export const editProjectBtn = function () {
-  const editProjectEl = document.querySelectorAll(".preview__btn--window");
+export const projectMenu = function () {
+  const projectBtnMenu = document.querySelectorAll(".preview__btn--window");
   const overlayEdit = document.querySelector(".overlay-edit");
+  //FIX: TODO:ver si sacar edit y delete de aca y meter en open nemu window{}
+  let editProject, deleteProject, menuWindow;
 
-  let id;
-
-  //open edit window
-  editProjectEl.forEach(function (el) {
+  //open menu window
+  projectBtnMenu.forEach(function (el) {
     el.addEventListener("click", function () {
-      id = el.previousElementSibling.hash;
+      const id = el.previousElementSibling.hash;
 
-      el.nextElementSibling.classList.remove("hidden");
+      console.log(el);
+      console.log(id);
+
+      menuWindow = document.querySelectorAll(`a[href='${id}']`)[0].parentElement
+        .children[2];
+      editProject = menuWindow.children[0].children[0];
+      deleteProject = menuWindow.children[0].children[1];
+
+      //TODO:dejar como toggle en otra funcion y llamarla desde aca. ver ejemplo ya realice esto mas arriba toggle esta en helpers
+      menuWindow.classList.remove("hidden");
       overlayEdit.classList.remove("hidden");
+
+      //edit proyect
+      editProject.addEventListener("click", function () {
+        //FIX:
+        //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar.
+
+        //FIX:sacar overlay cuando apreto edit, esta repetido hacer una funcion
+        menuWindow.classList.add("hidden");
+        overlayEdit.classList.add("hidden");
+
+        console.log(menuWindow);
+        console.log(editProject);
+        console.log(deleteProject);
+        toggleWindow("project");
+        const addProjectBtn = document.querySelector(
+          ".upload__btn--add-project"
+        );
+
+        const saveProjectBtn = document.querySelector(
+          ".upload__btn--save-project"
+        );
+
+        console.log(addProjectBtn);
+        console.log(saveProjectBtn);
+        //FIX:ACA ESTOY no hacerlo asi mejor crear otro btn y eliminar y hiiden el otro con toggle
+
+        //crear funcion con toggle
+        addProjectBtn.classList.toggle("hidden");
+        saveProjectBtn.classList.toggle("hidden");
+
+        //TODO:delete proyect
+      });
     });
   });
 
   //hide edit  window
   overlayEdit.addEventListener("click", function () {
-    const editWindow = document.querySelectorAll(`a[href='${id}']`)[0]
-      .parentElement.children[2];
-
-    editWindow.classList.add("hidden");
+    menuWindow.classList.add("hidden");
     overlayEdit.classList.add("hidden");
   });
-
-  //edit proyect
-  //FIX:aca quede, seleccionar el edit actual talvez ocupar el mismo de editwindow de arriba talvez definirlo mas arriba o no
-  const editProject = document.querySelector(".edit-project");
-  console.log(editProject);
-
-  //delete proyect
 };

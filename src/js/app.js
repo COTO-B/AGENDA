@@ -16,7 +16,7 @@ import {
   btnNewProject,
   createProjectObject,
   formProjectEl,
-  editProjectBtn,
+  projectMenu,
 } from "./header";
 import { createProjectMarkup } from "./projectList";
 
@@ -201,6 +201,7 @@ const APP = (function () {
     formProjectEl.addEventListener("submit", function (e) {
       e.preventDefault();
       //get form input project object and save on projects[]
+      //FIX: ACA ESTOY . poner un if (identificar con la clase del btn o poner datset en btn y leer eso) si es nuevo crearobject, si no, guardar sobre proyecto sin push, primero encontrar y reemplazar(crear funcion como input el id y guarda como projectobjetc)
       projects.push(createProjectObject());
       setLocalStorage(projects);
       console.log(projects);
@@ -249,14 +250,14 @@ const APP = (function () {
       //Load Project task head btns functionality
       taskHeadBtns();
       //edit project functionality
-      editProjectBtn();
+      projectMenu();
     });
 
     //Load Project task head btns functionality
     taskHeadBtns();
 
     //edit project functionality
-    editProjectBtn();
+    projectMenu();
   };
 
   //NOTE: INIT-------------------------------
