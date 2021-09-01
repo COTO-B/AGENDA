@@ -134,6 +134,7 @@ export const projectMenu = function () {
           ".upload__btn--add-project"
         );
 
+        // ver si mover con el otro btn arriba
         const saveProjectBtn = document.querySelector(
           ".upload__btn--save-project"
         );
