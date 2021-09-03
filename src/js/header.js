@@ -1,6 +1,10 @@
-import { toggleWindow, generateId, overlay } from "./helpers";
+import { toggleWindow, generateId, overlay, overlayEdit } from "./helpers";
 
 export const formProjectEl = document.querySelector(".upload");
+
+// form BTNS
+const addProjectBtnForm = document.querySelector(".upload__btn--add-project");
+const saveProjectBtnForm = document.querySelector(".upload__btn--save-project");
 
 //Project form functionality
 export const btnNewProject = function () {
@@ -25,6 +29,10 @@ export const btnNewProject = function () {
     btnShowColor.insertAdjacentHTML("afterbegin", defaultMarkup);
 
     formProjectEl.reset();
+
+    //cambiar de btn
+    addProjectBtnForm.classList.remove("hidden");
+    saveProjectBtnForm.classList.add("hidden");
 
     toggleWindow("project");
 
@@ -89,15 +97,14 @@ export const createProjectObject = function () {
     projectName: `${inputProjectName}`,
     projectColor: `${inputProjectColor}`,
     projectDescription: `${inputProjectDescription}`,
-    projectEditWindow: false,
     projectTask: [],
   };
 };
 
 export const projectMenu = function () {
   const projectBtnMenu = document.querySelectorAll(".preview__btn--window");
-  const overlayEdit = document.querySelector(".overlay-edit");
-  //FIX: TODO:ver si sacar edit y delete de aca y meter en open nemu window{}
+
+  //TODO:ver si sacar edit y delete de aca y meter en open nemu window{}, linea de abajo
   let editProject, deleteProject, menuWindow;
 
   //open menu window
@@ -105,47 +112,33 @@ export const projectMenu = function () {
     el.addEventListener("click", function () {
       const id = el.previousElementSibling.hash;
 
-      console.log(el);
-      console.log(id);
-
       menuWindow = document.querySelectorAll(`a[href='${id}']`)[0].parentElement
         .children[2];
+
       editProject = menuWindow.children[0].children[0];
       deleteProject = menuWindow.children[0].children[1];
 
-      //TODO:dejar como toggle en otra funcion y llamarla desde aca. ver ejemplo ya realice esto mas arriba toggle esta en helpers
-      menuWindow.classList.remove("hidden");
-      overlayEdit.classList.remove("hidden");
+      // TODO:dejar como toggle en otra funcion y llamarla desde aca. ver ejemplo ya realice esto mas arriba toggle esta en helpers. pasar como argumento el id o menuwindow.
+      //default hidden (menu y overlay), aca muestro cuando hago click en el boton 3 puntos(menu)
+      menuWindow.classList.toggle("hidden");
+      overlayEdit.classList.toggle("hidden");
 
-      //edit proyect
+      //REVIEW: FIX:ACA ESTOY.  edit proyect btn
+      //FIX: no funca cuando apreto edit y despues apreto nuevamente no sale el window form FIX: parece que como esta este event adentro de otro event cada vez que apreto edit se empieza a a sumar una vez ms el btn, ver si sacando de aca el event se soluciona (talvez pasar editproject esta definido afuera de ese event no pasrlo como argumento)
       editProject.addEventListener("click", function () {
-        //FIX:
+        //TODO:
         //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar.
-
-        //FIX:sacar overlay cuando apreto edit, esta repetido hacer una funcion
-        menuWindow.classList.add("hidden");
-        overlayEdit.classList.add("hidden");
-
-        console.log(menuWindow);
+        console.log("EDITTTTTTTT BTN");
         console.log(editProject);
-        console.log(deleteProject);
+        //oculto menu y overlay edit, los dejo hidden para mostrar la form project
+        menuWindow.classList.toggle("hidden");
+        overlayEdit.classList.toggle("hidden");
+
         toggleWindow("project");
-        const addProjectBtn = document.querySelector(
-          ".upload__btn--add-project"
-        );
 
-        // ver si mover con el otro btn arriba
-        const saveProjectBtn = document.querySelector(
-          ".upload__btn--save-project"
-        );
-
-        console.log(addProjectBtn);
-        console.log(saveProjectBtn);
-        //FIX:ACA ESTOY no hacerlo asi mejor crear otro btn y eliminar y hiiden el otro con toggle
-
-        //crear funcion con toggle
-        addProjectBtn.classList.toggle("hidden");
-        saveProjectBtn.classList.toggle("hidden");
+        //cambiar de btn
+        addProjectBtnForm.classList.add("hidden");
+        saveProjectBtnForm.classList.remove("hidden");
 
         //TODO:delete proyect
       });
