@@ -75,7 +75,7 @@
   }
 }
 
-//FIX:arreglar para que tenga mas espacio arriba y abajo y no desaparezca
+//TODO:arreglar para que tenga mas espacio arriba y abajo y no desaparezca
 .copyright {
   grid-area: copy;
   display: flex;
@@ -93,7 +93,7 @@
     }
   }
 }
-
+//FIX: ESTOY ACA: corregir, con el scroll se movio el window ver para que no afecte la posicion con el scroll
 .edit-project-window {
   background-color: var(--color-white);
   color: var(--color-grey-dark-2);

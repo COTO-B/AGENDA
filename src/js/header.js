@@ -109,45 +109,49 @@ export const projectMenu = function () {
 
   //open menu window
   projectBtnMenu.forEach(function (el) {
+    const id = el.previousElementSibling.hash;
+    //TODO:ver si cambiar el li por button
+    const editProject = el.nextElementSibling.children[0].children[0];
+    const deleteProject = el.nextElementSibling.children[0].children[1];
+
     el.addEventListener("click", function () {
-      const id = el.previousElementSibling.hash;
+      menuWindow = el.nextElementSibling;
+      console.log(menuWindow);
 
-      menuWindow = document.querySelectorAll(`a[href='${id}']`)[0].parentElement
-        .children[2];
-
-      editProject = menuWindow.children[0].children[0];
-      deleteProject = menuWindow.children[0].children[1];
-
-      // TODO:dejar como toggle en otra funcion y llamarla desde aca. ver ejemplo ya realice esto mas arriba toggle esta en helpers. pasar como argumento el id o menuwindow.
       //default hidden (menu y overlay), aca muestro cuando hago click en el boton 3 puntos(menu)
-      menuWindow.classList.toggle("hidden");
-      overlayEdit.classList.toggle("hidden");
-
-      //REVIEW: FIX:ACA ESTOY.  edit proyect btn
-      //FIX: no funca cuando apreto edit y despues apreto nuevamente no sale el window form FIX: parece que como esta este event adentro de otro event cada vez que apreto edit se empieza a a sumar una vez ms el btn, ver si sacando de aca el event se soluciona (talvez pasar editproject esta definido afuera de ese event no pasrlo como argumento)
-      editProject.addEventListener("click", function () {
-        //TODO:
-        //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar.
-        console.log("EDITTTTTTTT BTN");
-        console.log(editProject);
-        //oculto menu y overlay edit, los dejo hidden para mostrar la form project
-        menuWindow.classList.toggle("hidden");
-        overlayEdit.classList.toggle("hidden");
-
-        toggleWindow("project");
-
-        //cambiar de btn
-        addProjectBtnForm.classList.add("hidden");
-        saveProjectBtnForm.classList.remove("hidden");
-
-        //TODO:delete proyect
-      });
+      toggleWindow(menuWindow);
     });
+
+    //REVIEW: FIX:ACA ESTOY.  edit proyect btn
+
+    editProject.addEventListener("click", function () {
+      //TODO:
+      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar.
+      // FIX: leer con el id el nombre del project
+      console.log("EDITTTTTTTT BTN", id);
+      console.log(projects);
+
+      const inputProjectName = document.querySelector(
+        ".upload__input-name"
+      ).value;
+
+      console.log(inputProjectName);
+
+      //oculto menu y overlay edit, los dejo hidden para mostrar la form project
+      toggleWindow(menuWindow);
+      toggleWindow("project");
+
+      //cambiar de btn
+      addProjectBtnForm.classList.add("hidden");
+      saveProjectBtnForm.classList.remove("hidden");
+
+      //TODO:delete proyect
+    });
+    // console.log(editProject); //undefined
   });
 
   //hide edit  window
   overlayEdit.addEventListener("click", function () {
-    menuWindow.classList.add("hidden");
-    overlayEdit.classList.add("hidden");
+    toggleWindow(menuWindow);
   });
 };

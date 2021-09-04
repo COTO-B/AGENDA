@@ -40,13 +40,7 @@ export const createProjectMarkup = function (projectObject) {
             <use data-icon="calendar" href="${icons}#icon-trash"></use>
           </svg>
           <span>Delete</span>
-        </li>
-        <li class="status-project">
-          <svg>
-            <use data-icon="calendar" href="${icons}#icon-trash"></use>
-          </svg>
-          <span>Delete</span>
-        </li>
+        </li>        
       </ul>
     </div>
   
