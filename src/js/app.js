@@ -49,7 +49,7 @@ const APP = (function () {
   let projects = [];
 
   //NOTE:FUNCTIONS---------------------------
-  //TODO:cambiar por findActiveProject
+  //TODO:cambiar por findActiveProject ver si ponerlo en helpers
   const activeProject = function (hash = false) {
     const id = hash === false ? +window.location.hash.slice(1) : +hash;
 
@@ -250,14 +250,14 @@ const APP = (function () {
       //Load Project task head btns functionality
       taskHeadBtns();
       //edit project functionality
-      projectMenu();
+      projectMenu(projects);
     });
 
     //Load Project task head btns functionality
     taskHeadBtns();
 
     //edit project functionality
-    projectMenu();
+    projectMenu(projects);
   };
 
   //NOTE: INIT-------------------------------

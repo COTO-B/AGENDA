@@ -101,7 +101,7 @@ export const createProjectObject = function () {
   };
 };
 
-export const projectMenu = function () {
+export const projectMenu = function (projects) {
   const projectBtnMenu = document.querySelectorAll(".preview__btn--window");
 
   //TODO:ver si sacar edit y delete de aca y meter en open nemu window{}, linea de abajo
@@ -122,14 +122,18 @@ export const projectMenu = function () {
       toggleWindow(menuWindow);
     });
 
-    //REVIEW: FIX:ACA ESTOY.  edit proyect btn
+    //REVIEW: FIX:ACA ESTOY.  edit proyect btn. esta tomando como input el objeto proyect , ver si mover esto a app ya que voy a modificar proyect o que el resultado retur sea el nuevo proyect ya modificado
 
     editProject.addEventListener("click", function () {
       //TODO:
-      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar.
+      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar. y guardar en proyects
       // FIX: leer con el id el nombre del project
-      console.log("EDITTTTTTTT BTN", id);
+      console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
+      const activeProjectObject = projects.find(
+        (proj) => proj.projectId === +id.slice(1)
+      );
+      console.log(activeProjectObject);
 
       const inputProjectName = document.querySelector(
         ".upload__input-name"
