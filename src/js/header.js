@@ -126,7 +126,7 @@ export const projectMenu = function (projects) {
 
     editProject.addEventListener("click", function () {
       //TODO:
-      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar. y guardar en proyects
+      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar. y guardar en proyects.
       // FIX: leer con el id el nombre del project
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
