@@ -6,12 +6,12 @@ export const formProjectEl = document.querySelector(".upload");
 const addProjectBtnForm = document.querySelector(".upload__btn--add-project");
 const saveProjectBtnForm = document.querySelector(".upload__btn--save-project");
 
+const btnShowColor = document.querySelector(".color__btn-dropdown");
+
 //Project form functionality
 export const btnNewProject = function () {
   //NOTE:VARIABLES
   const btnNewProjectOpen = document.querySelector(".nav__btn--new-project");
-
-  const btnShowColor = document.querySelector(".color__btn-dropdown");
 
   const btnNewProjectClose = document.querySelector(
     ".btn--close-project-window"
@@ -60,22 +60,24 @@ export const btnNewProject = function () {
 
   //TODO:ver si añadir seleccion con el teclado.salir cuando hago click afuera del dropdown de los colores
 
+  //FIX:estoy aca ocupar este markup para render con el btn edit, ver si modificar markup var etc..
+  //haciendo el markup para el color
+  const colorMarkup = function (clickedElement) {
+    const projectColorName = clickedElement.textContent;
+    const projectColorNumber = clickedElement.dataset.color;
+    return `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
+    <span>${projectColorName}</span>`;
+  };
+
   //show selected color
   colorsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".color__item");
 
-    const projectColorName = clicked.textContent;
-    const projectColorNumber = clicked.dataset.color;
-
     //borrando todo el boton y sus tags
     btnShowColor.innerHTML = "";
 
-    //haciendo el markup
-    const markup = `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
-    <span>${projectColorName}</span>`;
-
     //mostrar el boton seleccionado con el click
-    btnShowColor.insertAdjacentHTML("afterbegin", markup);
+    btnShowColor.insertAdjacentHTML("afterbegin", colorMarkup(clicked));
 
     //toggle hidden
     colorsContainer.classList.toggle("hidden");
@@ -101,8 +103,27 @@ export const createProjectObject = function () {
   };
 };
 
+//TODO: este deberia ir en proyect list
 export const projectMenu = function (projects) {
   const projectBtnMenu = document.querySelectorAll(".preview__btn--window");
+
+  //array de colores
+  //TODO:ver donde dejar esto
+  const colorsIndex = [
+    "Berry Red",
+    "Red",
+    "Salmon",
+    "Dark Orange",
+    "Cyber Yellow",
+    "Spring Bud",
+    "Green",
+    "Medium Spring",
+    "Elecctric Blue",
+    "Azure",
+    "Han Purplee",
+    "Electric Purple",
+    "Magenta",
+  ];
 
   //TODO:ver si sacar edit y delete de aca y meter en open nemu window{}, linea de abajo
   let editProject, deleteProject, menuWindow;
@@ -114,30 +135,41 @@ export const projectMenu = function (projects) {
     const editProject = el.nextElementSibling.children[0].children[0];
     const deleteProject = el.nextElementSibling.children[0].children[1];
 
+    console.log(el);
+
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
-      console.log(menuWindow);
-
+      // console.log(menuWindow);
+      console.log("btn");
       //default hidden (menu y overlay), aca muestro cuando hago click en el boton 3 puntos(menu)
       toggleWindow(menuWindow);
     });
 
-    //REVIEW: FIX:ACA ESTOY.  edit proyect btn. esta tomando como input el objeto proyect , ver si mover esto a app ya que voy a modificar proyect o que el resultado retur sea el nuevo proyect ya modificado
+    //REVIEW: no funca el boton cuando creo un nuevo pryecto. no funca el overlay para ocultar cuando hago haschange y apreto otro btn edit. el overlay se apreta dos veces revisar pq, se esta creando cada vez que apreto haschange sacar de aca
+    //  FIX:ACA ESTOY.  edit proyect btn. esta tomando como input el objeto proyect , ver si mover esto a app ya que voy a modificar proyect o que el resultado retur sea el nuevo proyect ya modificado
 
     editProject.addEventListener("click", function () {
       //TODO:
       //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar. y guardar en proyects.
-      // FIX: leer con el id el nombre del project
+
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
       const activeProjectObject = projects.find(
         (proj) => proj.projectId === +id.slice(1)
       );
       console.log(activeProjectObject);
+      console.log(
+        activeProjectObject.projectName,
+        activeProjectObject.projectColor,
+        activeProjectObject.projectDescription
+      );
 
-      const inputProjectName = document.querySelector(
+      //nombre color
+      console.log(colorsIndex[activeProjectObject.projectColor - 1]);
+
+      const inputProjectName = (document.querySelector(
         ".upload__input-name"
-      ).value;
+      ).value = activeProjectObject.projectName);
 
       console.log(inputProjectName);
 
@@ -154,8 +186,9 @@ export const projectMenu = function (projects) {
     // console.log(editProject); //undefined
   });
 
-  //hide edit  window
+  //hide edit  window FIX:sacar de aca se esta creando cada vez que apreto haschange
   overlayEdit.addEventListener("click", function () {
+    console.log("overlay");
     toggleWindow(menuWindow);
   });
 };

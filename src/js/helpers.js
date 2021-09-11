@@ -20,8 +20,10 @@ export const toggleWindow = function (type) {
     typeof type === "object" &&
     type.classList.contains("edit-project-window")
   ) {
+    console.log(overlayEdit, type);
     overlayEdit.classList.toggle("hidden");
     type.classList.toggle("hidden");
+    console.log(overlayEdit, type);
   }
 };
 
