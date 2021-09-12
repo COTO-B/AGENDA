@@ -103,6 +103,14 @@ export const createProjectObject = function () {
   };
 };
 
+//TODO: este deberia ir en proyect list, es del project menu btn
+//hide edit  window
+let menuWindow;
+overlayEdit.addEventListener("click", function () {
+  console.log("overlay");
+  toggleWindow(menuWindow);
+});
+
 //TODO: este deberia ir en proyect list
 export const projectMenu = function (projects) {
   const projectBtnMenu = document.querySelectorAll(".preview__btn--window");
@@ -126,17 +134,17 @@ export const projectMenu = function (projects) {
   ];
 
   //TODO:ver si sacar edit y delete de aca y meter en open nemu window{}, linea de abajo
-  let editProject, deleteProject, menuWindow;
+  let editProject, deleteProject, id;
 
   //open menu window
   projectBtnMenu.forEach(function (el) {
-    const id = el.previousElementSibling.hash;
+    id = el.previousElementSibling.hash;
     //TODO:ver si cambiar el li por button
-    const editProject = el.nextElementSibling.children[0].children[0];
-    const deleteProject = el.nextElementSibling.children[0].children[1];
+    editProject = el.nextElementSibling.children[0].children[0];
+    deleteProject = el.nextElementSibling.children[0].children[1];
 
-    console.log(el);
-
+    console.log(el, id);
+    //FIX:estoy aca ver como sacar el id, editproject y delete pq cada foreach se esta creando uno nuevo
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
       // console.log(menuWindow);
@@ -145,13 +153,7 @@ export const projectMenu = function (projects) {
       toggleWindow(menuWindow);
     });
 
-    //REVIEW: no funca el boton cuando creo un nuevo pryecto. no funca el overlay para ocultar cuando hago haschange y apreto otro btn edit. el overlay se apreta dos veces revisar pq, se esta creando cada vez que apreto haschange sacar de aca
-    //  FIX:ACA ESTOY.  edit proyect btn. esta tomando como input el objeto proyect , ver si mover esto a app ya que voy a modificar proyect o que el resultado retur sea el nuevo proyect ya modificado
-
     editProject.addEventListener("click", function () {
-      //TODO:
-      //cambiar el atributo del input,value al del proy actual (id). revisar html para sber que clase ocupar para seleccionar. y guardar en proyects.
-
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
       const activeProjectObject = projects.find(
@@ -166,7 +168,7 @@ export const projectMenu = function (projects) {
 
       //nombre color
       console.log(colorsIndex[activeProjectObject.projectColor - 1]);
-
+      // FIX:estoy aca poner el color y la desripcion
       const inputProjectName = (document.querySelector(
         ".upload__input-name"
       ).value = activeProjectObject.projectName);
@@ -180,15 +182,7 @@ export const projectMenu = function (projects) {
       //cambiar de btn
       addProjectBtnForm.classList.add("hidden");
       saveProjectBtnForm.classList.remove("hidden");
-
-      //TODO:delete proyect
     });
-    // console.log(editProject); //undefined
-  });
-
-  //hide edit  window FIX:sacar de aca se esta creando cada vez que apreto haschange
-  overlayEdit.addEventListener("click", function () {
-    console.log("overlay");
-    toggleWindow(menuWindow);
+    //TODO:delete proyect
   });
 };
