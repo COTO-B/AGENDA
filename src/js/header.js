@@ -143,7 +143,7 @@ export const projectMenu = function (projects) {
     editProject = el.nextElementSibling.children[0].children[0];
     deleteProject = el.nextElementSibling.children[0].children[1];
 
-    console.log(el, id);
+    // console.log(el, id);
     //FIX:estoy aca ver como sacar el id, editproject y delete pq cada foreach se esta creando uno nuevo
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
@@ -168,12 +168,19 @@ export const projectMenu = function (projects) {
 
       //nombre color
       console.log(colorsIndex[activeProjectObject.projectColor - 1]);
-      // FIX:estoy aca poner el color y la desripcion
+      // FIX:estoy aca poner el color y la desripcion, revisar el id siempre tira el mismo
       const inputProjectName = (document.querySelector(
         ".upload__input-name"
       ).value = activeProjectObject.projectName);
 
-      console.log(inputProjectName);
+      const inputProjectColor = (document.querySelector(
+        ".color__item-circle--selected"
+      ).dataset.color = colorsIndex[activeProjectObject.projectColor - 1]);
+      const inputProjectDescription = document.querySelector(
+        ".upload__input-description"
+      ).value;
+
+      console.log(inputProjectName, inputProjectColor);
 
       //oculto menu y overlay edit, los dejo hidden para mostrar la form project
       toggleWindow(menuWindow);
