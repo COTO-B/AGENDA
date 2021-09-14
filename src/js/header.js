@@ -63,6 +63,7 @@ export const btnNewProject = function () {
   //FIX:estoy aca ocupar este markup para render con el btn edit, ver si modificar markup var etc..
   //haciendo el markup para el color
   const colorMarkup = function (clickedElement) {
+    //FIX: REVIEW: aca estoy, que el input sea color name y color number. en el event de abajo obtener . textcontent y dateset,color para obtener el input para la funcion
     const projectColorName = clickedElement.textContent;
     const projectColorNumber = clickedElement.dataset.color;
     return `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
@@ -72,6 +73,7 @@ export const btnNewProject = function () {
   //show selected color
   colorsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".color__item");
+    console.log(clicked, clicked.textContent, clicked.dataset.color);
 
     //borrando todo el boton y sus tags
     btnShowColor.innerHTML = "";
@@ -138,7 +140,6 @@ export const projectMenu = function (projects) {
 
   //open menu window
   projectBtnMenu.forEach(function (el) {
-    id = el.previousElementSibling.hash;
     //TODO:ver si cambiar el li por button
     editProject = el.nextElementSibling.children[0].children[0];
     deleteProject = el.nextElementSibling.children[0].children[1];
@@ -154,6 +155,7 @@ export const projectMenu = function (projects) {
     });
 
     editProject.addEventListener("click", function () {
+      id = el.previousElementSibling.hash;
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
       const activeProjectObject = projects.find(
@@ -172,15 +174,28 @@ export const projectMenu = function (projects) {
       const inputProjectName = (document.querySelector(
         ".upload__input-name"
       ).value = activeProjectObject.projectName);
+      ///////////////////////////////////
+      //para color mejor ocupar color markup method (colorMarkup)
 
-      const inputProjectColor = (document.querySelector(
-        ".color__item-circle--selected"
-      ).dataset.color = colorsIndex[activeProjectObject.projectColor - 1]);
-      const inputProjectDescription = document.querySelector(
+      // const inputProjectColorName = (document.querySelector(
+      //   ".color__btn-dropdown"
+      // ).children[1].innerHTML =
+      //   colorsIndex[activeProjectObject.projectColor - 1]);
+      // //color number tb cambiar el css
+      // const inputProjectColorNumber = (document.querySelector(
+      //   ".color__item-circle--selected"
+      // ).dataset.color = activeProjectObject.projectColor);
+
+      ////////////////////////////////
+      const inputProjectDescription = (document.querySelector(
         ".upload__input-description"
-      ).value;
+      ).innerHTML = activeProjectObject.projectDescription);
 
-      console.log(inputProjectName, inputProjectColor);
+      // console.log(
+      //   inputProjectName,
+      //   inputProjectColorNumber,
+      //   inputProjectColorName
+      // );
 
       //oculto menu y overlay edit, los dejo hidden para mostrar la form project
       toggleWindow(menuWindow);
@@ -190,6 +205,7 @@ export const projectMenu = function (projects) {
       addProjectBtnForm.classList.add("hidden");
       saveProjectBtnForm.classList.remove("hidden");
     });
+    //TODO:save btn
     //TODO:delete proyect
   });
 };
