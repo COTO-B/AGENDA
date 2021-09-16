@@ -7,6 +7,14 @@ const addProjectBtnForm = document.querySelector(".upload__btn--add-project");
 const saveProjectBtnForm = document.querySelector(".upload__btn--save-project");
 
 const btnShowColor = document.querySelector(".color__btn-dropdown");
+const inputProjectDescription = document.querySelector(
+  ".upload__input-description"
+);
+
+const colorMarkup = function (projectColorName, projectColorNumber) {
+  return `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
+  <span>${projectColorName}</span>`;
+};
 
 //Project form functionality
 export const btnNewProject = function () {
@@ -16,6 +24,7 @@ export const btnNewProject = function () {
   const btnNewProjectClose = document.querySelector(
     ".btn--close-project-window"
   );
+  //TODO:este esta repetido REVIEW:revisar
   const btnColorDropdown = document.querySelector(".color__btn-dropdown");
   const colorsContainer = document.querySelector(".color__list");
 
@@ -28,7 +37,9 @@ export const btnNewProject = function () {
 
     btnShowColor.insertAdjacentHTML("afterbegin", defaultMarkup);
 
+    //reset form
     formProjectEl.reset();
+    inputProjectDescription.innerHTML = "";
 
     //cambiar de btn
     addProjectBtnForm.classList.remove("hidden");
@@ -60,26 +71,20 @@ export const btnNewProject = function () {
 
   //TODO:ver si añadir seleccion con el teclado.salir cuando hago click afuera del dropdown de los colores
 
-  //FIX:estoy aca ocupar este markup para render con el btn edit, ver si modificar markup var etc..
-  //haciendo el markup para el color
-  const colorMarkup = function (clickedElement) {
-    //FIX: REVIEW: aca estoy, que el input sea color name y color number. en el event de abajo obtener . textcontent y dateset,color para obtener el input para la funcion
-    const projectColorName = clickedElement.textContent;
-    const projectColorNumber = clickedElement.dataset.color;
-    return `<span class="color__item-circle color__item-circle--selected color__item-circle--${projectColorNumber}" data-color="${projectColorNumber}"></span>
-    <span>${projectColorName}</span>`;
-  };
-
   //show selected color
   colorsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".color__item");
-    console.log(clicked, clicked.textContent, clicked.dataset.color);
+    const projectColorName = clicked.textContent;
+    const projectColorNumber = clicked.dataset.color;
 
     //borrando todo el boton y sus tags
     btnShowColor.innerHTML = "";
 
     //mostrar el boton seleccionado con el click
-    btnShowColor.insertAdjacentHTML("afterbegin", colorMarkup(clicked));
+    btnShowColor.insertAdjacentHTML(
+      "afterbegin",
+      colorMarkup(projectColorName, projectColorNumber)
+    );
 
     //toggle hidden
     colorsContainer.classList.toggle("hidden");
@@ -145,7 +150,7 @@ export const projectMenu = function (projects) {
     deleteProject = el.nextElementSibling.children[0].children[1];
 
     // console.log(el, id);
-    //FIX:estoy aca ver como sacar el id, editproject y delete pq cada foreach se esta creando uno nuevo
+    //FIX:estoy aca ver como sacar el id, editproject, save y delete pq cada foreach se esta creando uno nuevo, talvez con closer
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
       // console.log(menuWindow);
@@ -158,44 +163,30 @@ export const projectMenu = function (projects) {
       id = el.previousElementSibling.hash;
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
+      //find project
       const activeProjectObject = projects.find(
         (proj) => proj.projectId === +id.slice(1)
       );
-      console.log(activeProjectObject);
-      console.log(
-        activeProjectObject.projectName,
-        activeProjectObject.projectColor,
-        activeProjectObject.projectDescription
+
+      //color name y color number
+      const projectColorName =
+        colorsIndex[activeProjectObject.projectColor - 1];
+      const projectColorNumber = activeProjectObject.projectColor;
+      //borrando todo el boton y sus tags
+      btnShowColor.innerHTML = "";
+      //mostrar el boton seleccionado con el click
+      btnShowColor.insertAdjacentHTML(
+        "afterbegin",
+        colorMarkup(projectColorName, projectColorNumber)
       );
 
-      //nombre color
-      console.log(colorsIndex[activeProjectObject.projectColor - 1]);
-      // FIX:estoy aca poner el color y la desripcion, revisar el id siempre tira el mismo
+      //project name
       const inputProjectName = (document.querySelector(
         ".upload__input-name"
       ).value = activeProjectObject.projectName);
-      ///////////////////////////////////
-      //para color mejor ocupar color markup method (colorMarkup)
-
-      // const inputProjectColorName = (document.querySelector(
-      //   ".color__btn-dropdown"
-      // ).children[1].innerHTML =
-      //   colorsIndex[activeProjectObject.projectColor - 1]);
-      // //color number tb cambiar el css
-      // const inputProjectColorNumber = (document.querySelector(
-      //   ".color__item-circle--selected"
-      // ).dataset.color = activeProjectObject.projectColor);
-
-      ////////////////////////////////
-      const inputProjectDescription = (document.querySelector(
-        ".upload__input-description"
-      ).innerHTML = activeProjectObject.projectDescription);
-
-      // console.log(
-      //   inputProjectName,
-      //   inputProjectColorNumber,
-      //   inputProjectColorName
-      // );
+      //project description
+      inputProjectDescription.innerHTML =
+        activeProjectObject.projectDescription;
 
       //oculto menu y overlay edit, los dejo hidden para mostrar la form project
       toggleWindow(menuWindow);
