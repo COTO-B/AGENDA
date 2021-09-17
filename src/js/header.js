@@ -3,8 +3,12 @@ import { toggleWindow, generateId, overlay, overlayEdit } from "./helpers";
 export const formProjectEl = document.querySelector(".upload");
 
 // form BTNS
-const addProjectBtnForm = document.querySelector(".upload__btn--add-project");
-const saveProjectBtnForm = document.querySelector(".upload__btn--save-project");
+export const addProjectBtnForm = document.querySelector(
+  ".upload__btn--add-project"
+);
+export const saveProjectBtnForm = document.querySelector(
+  ".upload__btn--save-project"
+);
 
 const btnShowColor = document.querySelector(".color__btn-dropdown");
 const inputProjectDescription = document.querySelector(
@@ -150,7 +154,7 @@ export const projectMenu = function (projects) {
     deleteProject = el.nextElementSibling.children[0].children[1];
 
     // console.log(el, id);
-    //FIX:estoy aca ver como sacar el id, editproject, save y delete pq cada foreach se esta creando uno nuevo, talvez con closer
+    //FIX:estoy aca ver como sacar el id, editproject, save y delete pq cada foreach se esta creando uno nuevo, talvez con closest
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
       // console.log(menuWindow);
