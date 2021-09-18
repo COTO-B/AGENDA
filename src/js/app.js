@@ -204,13 +204,14 @@ const APP = (function () {
       e.preventDefault();
       //get form input project object and save on projects[]
       //FIX: ACA ESTOY . poner un if (identificar con la clase del btn o poner datset en btn y leer eso) si es nuevo crearobject, si no, guardar sobre proyecto sin push, primero encontrar y reemplazar(crear funcion como input el id y guarda como projectobjetc)
-      //FIX:cuando pongo save o add project en la form no funciona el boton edit nuevamente
 
       //ver si pcupar addProjectBtnForm de header, no me funciono revisar
+
+      //add project btn
       if (!formProjectEl.children[5].classList.contains("hidden")) {
         projects.push(createProjectObject());
       }
-
+      //save project btn
       if (!formProjectEl.children[6].classList.contains("hidden")) {
         console.log("saveeeeee");
       }

@@ -155,6 +155,7 @@ export const projectMenu = function (projects) {
 
     // console.log(el, id);
     //FIX:estoy aca ver como sacar el id, editproject, save y delete pq cada foreach se esta creando uno nuevo, talvez con closest
+    //FIX:cuando pongo save o add project en la form no funciona el boton edit nuevamente
     el.addEventListener("click", function () {
       menuWindow = el.nextElementSibling;
       // console.log(menuWindow);
@@ -167,6 +168,7 @@ export const projectMenu = function (projects) {
       id = el.previousElementSibling.hash;
       console.log("EDITTTTTTTT BTN", id, +id.slice(1));
       console.log(projects);
+
       //find project
       const activeProjectObject = projects.find(
         (proj) => proj.projectId === +id.slice(1)
@@ -200,7 +202,11 @@ export const projectMenu = function (projects) {
       addProjectBtnForm.classList.add("hidden");
       saveProjectBtnForm.classList.remove("hidden");
     });
-    //TODO:save btn
-    //TODO:delete proyect
   });
+  //TODO:save btn
+  const saveProjectObject = function () {
+    console.log("save project");
+    // FIX:estoy aca. definir nombre, color, nombre color y descripton en la parte donde esta el id, ya que aca los voy a ocupar. otra forma es ocupar el markup de createprojectobject
+  };
+  //TODO:delete proyect
 };
