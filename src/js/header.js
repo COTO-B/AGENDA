@@ -206,7 +206,7 @@ export const projectMenu = function (projects) {
   //TODO:save btn
   const saveProjectObject = function () {
     console.log("save project");
-    // FIX:estoy aca. definir nombre, color, nombre color y descripton en la parte donde esta el id, ya que aca los voy a ocupar. otra forma es ocupar el markup de createprojectobject
+    // FIX:estoy aca. definir nombre, color, nombre color y descripton en la parte donde esta el id, ya que aca los voy a ocupar. otra forma es ocupar el markup de createprojectobject pero ojo con las task no sobrescribirlas
   };
   //TODO:delete proyect
 };

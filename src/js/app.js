@@ -206,28 +206,34 @@ const APP = (function () {
       //FIX: ACA ESTOY . poner un if (identificar con la clase del btn o poner datset en btn y leer eso) si es nuevo crearobject, si no, guardar sobre proyecto sin push, primero encontrar y reemplazar(crear funcion como input el id y guarda como projectobjetc)
 
       //ver si pcupar addProjectBtnForm de header, no me funciono revisar
-
+      let projectId;
       //add project btn
       if (!formProjectEl.children[5].classList.contains("hidden")) {
         projects.push(createProjectObject());
+        projectId = `#${projects[projects.length - 1].projectId}`;
       }
       //save project btn
       if (!formProjectEl.children[6].classList.contains("hidden")) {
         console.log("saveeeeee");
+        //cambiar por el id correcto esto es solo test
+        projectId = "#7257744937737";
       }
 
       setLocalStorage(projects);
       console.log(projects);
-      //change ID in URL hash
-      window.history.pushState(
-        null,
-        "",
-        `#${projects[projects.length - 1].projectId}`
-      );
-      //render project on list
-      renderList();
-      //render project detail
-      renderProjectDetail(activeProject());
+      //change ID in URL hash y se actualiza la pagina y lo agarra el event hashchange
+      window.location.hash = projectId;
+
+      //sin hash change, no se actualiza la pagina y hay que render nuevamente y se pierde la funcionalidad del edit btn
+      // window.history.pushState(
+      //   null,
+      //   "",
+      //   `#${projects[projects.length - 1].projectId}`
+      // );
+      // //render project on list
+      // renderList();
+      // //render project detail
+      // renderProjectDetail(activeProject());
       // close window
       toggleWindow("project");
     });
